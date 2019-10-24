@@ -4,9 +4,9 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
 
-
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
+
     @Override
     protected void onFirstViewAttach() {
         getViewState().hideLoading();
@@ -19,4 +19,9 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     public void onTextSubmitted(String text, String lang) {
         getViewState().showErrorMessage(text);
     }
+
+    public void onSwapButtonClicked() {
+        getViewState().swapLanguages();
+    }
+
 }

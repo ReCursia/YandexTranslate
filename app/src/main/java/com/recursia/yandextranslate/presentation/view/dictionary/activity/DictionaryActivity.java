@@ -24,25 +24,31 @@ import java.util.List;
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
     private static final boolean REVERSE_LAYOUT = false;
-
     Button addButton;
+    Button swapButton;
     EditText editText;
     Spinner translateFromSpinner;
     Spinner translateToSpinner;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-
     @InjectPresenter
     DictionaryPresenter presenter;
-
     WordPairsAdapter adapter;
+
+    @Override
+    public void swapLanguages() {
+        int fromIndex = translateFromSpinner.getSelectedItemPosition();
+        int toIndex = translateToSpinner.getSelectedItemPosition();
+        translateFromSpinner.setSelection(toIndex);
+        translateToSpinner.setSelection(fromIndex);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindViews();
-        setOnClickButtonListener();
+        setOnClickButtonsListeners();
         setEditTextSubmitListener();
         initAdapter();
         initRecyclerView();
@@ -50,6 +56,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
     private void bindViews() {
         addButton = findViewById(R.id.addButton);
+        swapButton = findViewById(R.id.swapButton);
         editText = findViewById(R.id.editText);
         translateFromSpinner = findViewById(R.id.translateFromSpinner);
         translateToSpinner = findViewById(R.id.translateToSpinner);
@@ -57,8 +64,9 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         progressBar = findViewById(R.id.progressBar);
     }
 
-    private void setOnClickButtonListener() {
+    private void setOnClickButtonsListeners() {
         addButton.setOnClickListener((v) -> presenter.onAddButtonClicked());
+        swapButton.setOnClickListener(v -> presenter.onSwapButtonClicked());
     }
 
     private void setEditTextSubmitListener() {

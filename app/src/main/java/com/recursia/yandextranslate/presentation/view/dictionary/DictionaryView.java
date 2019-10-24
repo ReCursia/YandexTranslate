@@ -18,4 +18,6 @@ public interface DictionaryView extends MvpView {
     void showLoading();
 
     void hideLoading();
+
+    void swapLanguages();
 }
