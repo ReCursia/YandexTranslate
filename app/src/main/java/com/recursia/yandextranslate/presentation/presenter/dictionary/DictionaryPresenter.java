@@ -9,13 +9,14 @@ import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     @Override
     protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
+        getViewState().hideLoading();
+        //TODO start download dict from database
     }
 
     public void onAddButtonClicked() {
     }
 
     public void onTextSubmitted(String text, String lang) {
-
+        getViewState().showErrorMessage(text);
     }
 }

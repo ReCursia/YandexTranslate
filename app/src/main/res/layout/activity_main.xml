@@ -67,13 +67,15 @@
             android:id="@+id/translateFromSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:entries="@array/languages" />
 
         <Spinner
             android:id="@+id/translateToSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:entries="@array/languages" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

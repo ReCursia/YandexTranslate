@@ -64,7 +64,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     private void setEditTextSubmitListener() {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //TODO implement spinner languages
+                //TODO implement passing en-ru codes..
                 presenter.onTextSubmitted(editText.getText().toString(), "ru-en");
                 return true;
             }
