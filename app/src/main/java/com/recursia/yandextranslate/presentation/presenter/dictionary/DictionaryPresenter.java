@@ -14,4 +14,8 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
 
     public void onAddButtonClicked() {
     }
+
+    public void onTextSubmitted(String text, String lang) {
+
+    }
 }

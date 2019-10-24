@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -34,6 +35,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     @InjectPresenter
     DictionaryPresenter presenter;
 
+    WordPairsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +48,6 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         initRecyclerView();
     }
 
-    private void setEditTextSubmitListener() {
-        //editText.
-    }
-
-    private void setOnClickButtonListener() {
-        addButton.setOnClickListener((v) -> presenter.onAddButtonClicked());
-    }
-
-    private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
-    }
-
-    private void initAdapter() {
-        WordPairsAdapter adapter = new WordPairsAdapter();
-        recyclerView.setAdapter(adapter);
-    }
-
     private void bindViews() {
         addButton = findViewById(R.id.addButton);
         editText = findViewById(R.id.editText);
@@ -72,9 +57,33 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         progressBar = findViewById(R.id.progressBar);
     }
 
+    private void setOnClickButtonListener() {
+        addButton.setOnClickListener((v) -> presenter.onAddButtonClicked());
+    }
+
+    private void setEditTextSubmitListener() {
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //TODO implement spinner languages
+                presenter.onTextSubmitted(editText.getText().toString(), "ru-en");
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void initAdapter() {
+        adapter = new WordPairsAdapter();
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
+    }
+
     @Override
     public void setWords(List<WordPairUiModel> pairs) {
-        //TODO implement
+        adapter.setWordPairs(pairs);
     }
 
     @Override
@@ -93,4 +102,5 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
+
 }
