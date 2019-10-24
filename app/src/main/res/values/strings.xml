@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Yandex Translate</string>
     <string name="add_button">Add</string>
+    <string name="translate_from">Translate from</string>
+    <string name="translate_to">Translate to</string>
 </resources>
