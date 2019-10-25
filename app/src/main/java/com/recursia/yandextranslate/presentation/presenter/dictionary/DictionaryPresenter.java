@@ -2,11 +2,22 @@ package com.recursia.yandextranslate.presentation.presenter.dictionary;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.recursia.yandextranslate.domain.dictionary.AddToDictionaryInteractor;
+import com.recursia.yandextranslate.domain.dictionary.SearchInDictionaryInteractor;
 import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
 
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
+    private AddToDictionaryInteractor addToDictionaryInteractor;
+    private SearchInDictionaryInteractor searchInDictionaryInteractor;
 
+    //TODO add dagger injection
+    public DictionaryPresenter(AddToDictionaryInteractor addToDictionaryInteractor, SearchInDictionaryInteractor searchInDictionaryInteractor) {
+        this.addToDictionaryInteractor = addToDictionaryInteractor;
+        this.searchInDictionaryInteractor = searchInDictionaryInteractor;
+    }
+
+    //TODO mapper?
     @Override
     protected void onFirstViewAttach() {
         getViewState().hideLoading();

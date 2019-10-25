@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.models.domain;
+package com.recursia.yandextranslate.models.dictionary.domain;
 
 public class WordPair {
     private String plainWord;

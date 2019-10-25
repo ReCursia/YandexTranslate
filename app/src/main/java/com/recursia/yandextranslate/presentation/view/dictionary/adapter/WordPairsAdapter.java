@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.models.presentation.WordPairUiModel;
+import com.recursia.yandextranslate.models.dictionary.presentation.WordPairUiModel;
 
 import java.util.List;
 
@@ -43,6 +43,12 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
     @Override
     public int getItemCount() {
         return (wordPairs != null) ? wordPairs.size() : 0;
+    }
+
+    public void addWord(WordPairUiModel pair) {
+        int size = wordPairs.size();
+        wordPairs.add(pair);
+        notifyItemInserted(size);
     }
 
     static class WordPairHolder extends RecyclerView.ViewHolder {

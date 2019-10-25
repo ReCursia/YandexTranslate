@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.models.data;
+package com.recursia.yandextranslate.models.dictionary.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

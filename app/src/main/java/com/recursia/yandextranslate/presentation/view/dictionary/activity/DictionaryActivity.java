@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.models.presentation.WordPairUiModel;
+import com.recursia.yandextranslate.models.dictionary.presentation.WordPairUiModel;
 import com.recursia.yandextranslate.presentation.presenter.dictionary.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
 import com.recursia.yandextranslate.presentation.view.dictionary.adapter.WordPairsAdapter;
@@ -105,6 +105,11 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     @Override
     public void setWords(List<WordPairUiModel> pairs) {
         adapter.setWordPairs(pairs);
+    }
+
+    @Override
+    public void addWord(WordPairUiModel pair) {
+        adapter.addWord(pair);
     }
 
     @Override

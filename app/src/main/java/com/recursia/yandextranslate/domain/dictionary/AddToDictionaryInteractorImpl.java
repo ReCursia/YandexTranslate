@@ -1,11 +1,15 @@
 package com.recursia.yandextranslate.domain.dictionary;
 
-import io.reactivex.Completable;
+import com.recursia.yandextranslate.models.dictionary.domain.WordPair;
+
+import io.reactivex.Observable;
 
 public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor {
     //TODO add repo interfaces
+
+
     @Override
-    public Completable addWord(String word, String fromLang, String toLang) {
+    public Observable<WordPair> addWord(String word, String fromLang, String toLang) {
         return null;
     }
 }
