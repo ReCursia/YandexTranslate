@@ -46,7 +46,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     protected void onFirstViewAttach() {
         getViewState().showLoading();
         Disposable d = getAllWordsInDictionaryInteractor.getAllWords()
-                .map(mapper::transofrm)
+                .map(mapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);
         compositeDisposable.add(d);
@@ -74,7 +74,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     public void onTextSubmitted(String text) {
         getViewState().showLoading();
         Disposable d = searchInDictionaryInteractor.searchWords(text)
-                .map(mapper::transofrm)
+                .map(mapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);
         compositeDisposable.add(d);

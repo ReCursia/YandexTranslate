@@ -20,7 +20,7 @@ public class WordPairToViewModelMapper {
         return viewModel;
     }
 
-    public List<WordPairViewModel> transofrm(List<WordPair> wordPairsCollection) {
+    public List<WordPairViewModel> transform(List<WordPair> wordPairsCollection) {
         List<WordPairViewModel> viewModelsCollection;
 
         if (isValid(wordPairsCollection)) {

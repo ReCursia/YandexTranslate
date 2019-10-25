@@ -1,6 +1,6 @@
 package com.recursia.yandextranslate.data.network.dictionary;
 
-import com.recursia.yandextranslate.data.models.dictionary.TranslateNetworkResponseModel;
+import com.recursia.yandextranslate.data.models.dictionary.TranslateNetworkModel;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -16,5 +16,5 @@ public interface TranslateApi {
                     "ad6cb58598cfcfc04e982319ce1558fa6f50c224";
 
     @GET("translate/?key=" + API_KEY)
-    Single<TranslateNetworkResponseModel> getTranslate(@Query("text") String text, @Query("lang") String lang);
+    Single<TranslateNetworkModel> getTranslate(@Query("text") String text, @Query("lang") String lang);
 }
