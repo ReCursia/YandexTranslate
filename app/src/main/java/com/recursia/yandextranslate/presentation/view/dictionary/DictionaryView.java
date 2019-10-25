@@ -4,7 +4,7 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.recursia.yandextranslate.presentation.view.dictionary.models.WordPairUiModel;
+import com.recursia.yandextranslate.models.presentation.WordPairUiModel;
 
 import java.util.List;
 

@@ -14,9 +14,11 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     }
 
     public void onAddButtonClicked() {
+        //TODO make query
     }
 
     public void onTextSubmitted(String text, String fromLang, String toLang) {
+        //TODO implement interaction
         getViewState().showErrorMessage(text + " " + fromLang + " " + toLang);
     }
 

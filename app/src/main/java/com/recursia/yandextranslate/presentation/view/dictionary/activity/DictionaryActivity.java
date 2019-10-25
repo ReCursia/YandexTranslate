@@ -14,16 +14,18 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.recursia.yandextranslate.R;
+import com.recursia.yandextranslate.models.presentation.WordPairUiModel;
 import com.recursia.yandextranslate.presentation.presenter.dictionary.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
 import com.recursia.yandextranslate.presentation.view.dictionary.adapter.WordPairsAdapter;
-import com.recursia.yandextranslate.presentation.view.dictionary.models.WordPairUiModel;
+import com.recursia.yandextranslate.presentation.view.dictionary.decorator.MarginItemDecoration;
 
 import java.util.List;
 
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
     private static final boolean REVERSE_LAYOUT = false;
+    private static final int WORD_PAIR_ITEM_MARGIN = 8; //dp
     Button addButton;
     Button swapButton;
     EditText editText;
@@ -31,6 +33,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     Spinner translateToSpinner;
     RecyclerView recyclerView;
     ProgressBar progressBar;
+
     @InjectPresenter
     DictionaryPresenter presenter;
     WordPairsAdapter adapter;
@@ -96,6 +99,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
+        recyclerView.addItemDecoration(new MarginItemDecoration(this, WORD_PAIR_ITEM_MARGIN));
     }
 
     @Override

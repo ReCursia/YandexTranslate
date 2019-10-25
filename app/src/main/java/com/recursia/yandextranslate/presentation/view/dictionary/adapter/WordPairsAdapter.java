@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.presentation.view.dictionary.models.WordPairUiModel;
+import com.recursia.yandextranslate.models.presentation.WordPairUiModel;
 
 import java.util.List;
 
