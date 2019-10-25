@@ -14,6 +14,7 @@ import java.util.List;
 
 public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.WordPairHolder> {
 
+    private static final boolean ATTACH_TO_ROOT = false;
     private List<WordPairUiModel> wordPairs;
 
     @NonNull
@@ -22,7 +23,7 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.word_pair_item,
                 viewGroup,
-                false);
+                ATTACH_TO_ROOT);
 
         return new WordPairHolder(itemView);
     }
