@@ -1,10 +1,10 @@
 package com.recursia.yandextranslate.presentation.dictionary.models;
 
-public class WordPairUiModel {
+public class WordPairViewModel {
     private String plainWord;
     private String translatedWord;
 
-    public WordPairUiModel(String plainWord, String translatedWord) {
+    public WordPairViewModel(String plainWord, String translatedWord) {
         this.plainWord = plainWord;
         this.translatedWord = translatedWord;
     }

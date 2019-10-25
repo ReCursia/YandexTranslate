@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairUiModel;
+import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
 
 import java.util.List;
 
 public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.WordPairHolder> {
 
     private static final boolean ATTACH_TO_ROOT = false;
-    private List<WordPairUiModel> wordPairs;
+    private List<WordPairViewModel> wordPairs;
 
     @NonNull
     @Override
@@ -28,14 +28,14 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         return new WordPairHolder(itemView);
     }
 
-    public void setWordPairs(List<WordPairUiModel> wordPairs) {
+    public void setWordPairs(List<WordPairViewModel> wordPairs) {
         this.wordPairs = wordPairs;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull WordPairHolder wordPairHolder, int i) {
-        WordPairUiModel item = wordPairs.get(i);
+        WordPairViewModel item = wordPairs.get(i);
         wordPairHolder.plainText.setText(item.getPlainWord());
         wordPairHolder.translatedText.setText(item.getTranslatedWord());
     }
@@ -45,7 +45,7 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         return (wordPairs != null) ? wordPairs.size() : 0;
     }
 
-    public void addWord(WordPairUiModel pair) {
+    public void addWord(WordPairViewModel pair) {
         int size = wordPairs.size();
         wordPairs.add(pair);
         notifyItemInserted(size);
