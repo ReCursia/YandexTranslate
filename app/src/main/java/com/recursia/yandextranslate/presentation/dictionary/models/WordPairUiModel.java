@@ -1,8 +1,13 @@
-package com.recursia.yandextranslate.models.dictionary.domain;
+package com.recursia.yandextranslate.presentation.dictionary.models;
 
-public class WordPair {
+public class WordPairUiModel {
     private String plainWord;
     private String translatedWord;
+
+    public WordPairUiModel(String plainWord, String translatedWord) {
+        this.plainWord = plainWord;
+        this.translatedWord = translatedWord;
+    }
 
     public String getPlainWord() {
         return plainWord;
@@ -17,11 +22,6 @@ public class WordPair {
     }
 
     public void setTranslatedWord(String translatedWord) {
-        this.translatedWord = translatedWord;
-    }
-
-    public WordPair(String plainWord, String translatedWord) {
-        this.plainWord = plainWord;
         this.translatedWord = translatedWord;
     }
 }

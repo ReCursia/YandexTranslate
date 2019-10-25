@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.presentation.view.dictionary.decorator;
+package com.recursia.yandextranslate.presentation.dictionary.view.decorator;
 
 import android.content.Context;
 import android.graphics.Rect;

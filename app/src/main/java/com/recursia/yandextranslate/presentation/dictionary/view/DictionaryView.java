@@ -1,11 +1,11 @@
-package com.recursia.yandextranslate.presentation.view.dictionary;
+package com.recursia.yandextranslate.presentation.dictionary.view;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.recursia.yandextranslate.models.dictionary.presentation.WordPairUiModel;
+import com.recursia.yandextranslate.presentation.dictionary.models.WordPairUiModel;
 
 import java.util.List;
 

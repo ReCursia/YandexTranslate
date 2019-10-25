@@ -1,11 +1,12 @@
-package com.recursia.yandextranslate.presentation.presenter.dictionary;
+package com.recursia.yandextranslate.presentation.dictionary.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.recursia.yandextranslate.domain.dictionary.AddToDictionaryInteractor;
 import com.recursia.yandextranslate.domain.dictionary.GetAllWordsInDictionaryInteractor;
 import com.recursia.yandextranslate.domain.dictionary.SearchInDictionaryInteractor;
-import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
+import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
+
 
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
@@ -14,10 +15,12 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     private GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor;
 
     //TODO add dagger injection
+    /*
     public DictionaryPresenter(AddToDictionaryInteractor addToDictionaryInteractor, SearchInDictionaryInteractor searchInDictionaryInteractor) {
         this.addToDictionaryInteractor = addToDictionaryInteractor;
         this.searchInDictionaryInteractor = searchInDictionaryInteractor;
     }
+     */
 
     //TODO mapper?
     @Override

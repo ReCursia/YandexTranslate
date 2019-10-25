@@ -1,6 +1,6 @@
 package com.recursia.yandextranslate.domain.dictionary;
 
-import com.recursia.yandextranslate.models.dictionary.domain.WordPair;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import io.reactivex.Observable;
 

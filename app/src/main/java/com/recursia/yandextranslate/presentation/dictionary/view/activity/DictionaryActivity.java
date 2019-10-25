@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.presentation.view.dictionary.activity;
+package com.recursia.yandextranslate.presentation.dictionary.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,11 +14,11 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.models.dictionary.presentation.WordPairUiModel;
-import com.recursia.yandextranslate.presentation.presenter.dictionary.DictionaryPresenter;
-import com.recursia.yandextranslate.presentation.view.dictionary.DictionaryView;
-import com.recursia.yandextranslate.presentation.view.dictionary.adapter.WordPairsAdapter;
-import com.recursia.yandextranslate.presentation.view.dictionary.decorator.MarginItemDecoration;
+import com.recursia.yandextranslate.presentation.dictionary.models.WordPairUiModel;
+import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
+import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
+import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
+import com.recursia.yandextranslate.presentation.dictionary.view.decorator.MarginItemDecoration;
 
 import java.util.List;
 

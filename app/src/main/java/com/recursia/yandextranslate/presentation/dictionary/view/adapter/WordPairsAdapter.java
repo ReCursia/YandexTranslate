@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.presentation.view.dictionary.adapter;
+package com.recursia.yandextranslate.presentation.dictionary.view.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.models.dictionary.presentation.WordPairUiModel;
+import com.recursia.yandextranslate.presentation.dictionary.models.WordPairUiModel;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.recursia.yandextranslate.domain.dictionary;
 
-import com.recursia.yandextranslate.models.dictionary.data.TranslateNetworkResponseModel;
+import com.recursia.yandextranslate.data.models.dictionary.TranslateNetworkResponseModel;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
