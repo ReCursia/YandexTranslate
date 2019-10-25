@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.recursia.yandextranslate.R;
 import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
 import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
@@ -37,6 +38,13 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     @InjectPresenter
     DictionaryPresenter presenter;
     WordPairsAdapter adapter;
+
+    //TODO implement dagger
+    @ProvidePresenter
+    DictionaryPresenter providePresenter() {
+        //return new DictionaryPresenter()
+        return null;
+    }
 
     @Override
     public void swapLanguages() {
@@ -70,7 +78,10 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     }
 
     private void setOnClickButtonsListeners() {
-        addButton.setOnClickListener((v) -> presenter.onAddButtonClicked());
+        addButton.setOnClickListener((v) -> presenter.onAddButtonClicked(editText.getText().toString(),
+                getTranslatedFromLang()
+                , getTranslatedToLang()));
+
         swapButton.setOnClickListener(v -> presenter.onSwapButtonClicked());
     }
 
