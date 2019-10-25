@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.data.network;
+package com.recursia.yandextranslate.data.network.dictionary;
 
 import com.recursia.yandextranslate.data.models.dictionary.TranslateNetworkResponseModel;
 

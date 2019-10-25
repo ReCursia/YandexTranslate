@@ -8,7 +8,7 @@ import java.util.List;
 public class TranslateNetworkResponseModel {
     @SerializedName("code")
     @Expose
-    private Integer code;
+    private int code;
     @SerializedName("lang")
     @Expose
     private String lang;
@@ -16,7 +16,7 @@ public class TranslateNetworkResponseModel {
     @Expose
     private List<String> text = null;
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
