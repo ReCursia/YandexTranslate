@@ -41,6 +41,8 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         int toIndex = translateToSpinner.getSelectedItemPosition();
         translateFromSpinner.setSelection(toIndex);
         translateToSpinner.setSelection(fromIndex);
+
+        Toast.makeText(this, "Swapped successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -72,12 +74,19 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     private void setEditTextSubmitListener() {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //TODO implement passing en-ru codes..
-                presenter.onTextSubmitted(editText.getText().toString(), "ru-en");
+                presenter.onTextSubmitted(editText.getText().toString(), getTranslatedFromLang(), getTranslatedToLang());
                 return true;
             }
             return false;
         });
+    }
+
+    private String getTranslatedToLang() {
+        return translateToSpinner.getSelectedItem().toString();
+    }
+
+    private String getTranslatedFromLang() {
+        return translateFromSpinner.getSelectedItem().toString();
     }
 
     private void initAdapter() {

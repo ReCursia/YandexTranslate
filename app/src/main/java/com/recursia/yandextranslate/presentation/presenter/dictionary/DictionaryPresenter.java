@@ -16,8 +16,8 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     public void onAddButtonClicked() {
     }
 
-    public void onTextSubmitted(String text, String lang) {
-        getViewState().showErrorMessage(text);
+    public void onTextSubmitted(String text, String fromLang, String toLang) {
+        getViewState().showErrorMessage(text + " " + fromLang + " " + toLang);
     }
 
     public void onSwapButtonClicked() {
