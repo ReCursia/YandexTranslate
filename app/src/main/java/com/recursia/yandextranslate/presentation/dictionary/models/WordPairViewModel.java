@@ -4,11 +4,6 @@ public class WordPairViewModel {
     private String plainWord;
     private String translatedWord;
 
-    public WordPairViewModel(String plainWord, String translatedWord) {
-        this.plainWord = plainWord;
-        this.translatedWord = translatedWord;
-    }
-
     public String getPlainWord() {
         return plainWord;
     }

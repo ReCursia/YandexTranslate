@@ -77,7 +77,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     private void setEditTextSubmitListener() {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                presenter.onTextSubmitted(editText.getText().toString(), getTranslatedFromLang(), getTranslatedToLang());
+                presenter.onTextSubmitted(editText.getText().toString());
                 return true;
             }
             return false;
