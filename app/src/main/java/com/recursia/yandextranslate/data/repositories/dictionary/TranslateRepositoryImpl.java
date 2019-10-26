@@ -8,6 +8,6 @@ import io.reactivex.Observable;
 public class TranslateRepositoryImpl implements TranslateRepository {
     @Override
     public Observable<WordPair> getTranslate(String text, String fromLang, String toLang) {
-        return null;
+        return null; //TODO СЮДА ДОБАВИТЬ ДОБАВЛЕНИЕ TEXT К WORDPAIR, REPOSITORY НАХОДЯТСЯ НА ВНЕШНЕМ СЛОЕ!!!!!!!
     }
 }
