@@ -9,7 +9,7 @@ import com.recursia.yandextranslate.data.models.dictionary.WordPairDatabaseModel
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 @Dao
 public interface WordPairDao {
@@ -18,8 +18,8 @@ public interface WordPairDao {
     void insertWordPair(WordPairDatabaseModel model);
 
     @Query("SELECT * FROM word_pairs")
-    Observable<List<WordPairDatabaseModel>> getAllWordPairs();
+    Single<List<WordPairDatabaseModel>> getAllWordPairs();
 
-    @Query("SELECT * FROM word_pairs WHERE plainWord == :query OR translatedWord == :query")
-    Observable<List<WordPairDatabaseModel>> getAllQueryWordPairs(String query);
+    @Query("SELECT * FROM word_pairs WHERE plainWord LIKE :query OR translatedWord LIKE :query")
+    Single<List<WordPairDatabaseModel>> getAllQueryWordPairs(String query);
 }
