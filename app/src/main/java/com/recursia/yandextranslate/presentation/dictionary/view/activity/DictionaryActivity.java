@@ -15,6 +15,24 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.recursia.yandextranslate.R;
+import com.recursia.yandextranslate.data.db.dictionary.WordPairDao;
+import com.recursia.yandextranslate.data.db.dictionary.WordPairsDatabase;
+import com.recursia.yandextranslate.data.mapper.DatabaseWordPairModelToWordPairMapper;
+import com.recursia.yandextranslate.data.mapper.NetworkTranslateModelToWordPairMapper;
+import com.recursia.yandextranslate.data.mapper.WordPairToDatabaseWordPairModelMapper;
+import com.recursia.yandextranslate.data.network.dictionary.TranslateApi;
+import com.recursia.yandextranslate.data.network.dictionary.TranslateService;
+import com.recursia.yandextranslate.data.repositories.dictionary.TranslateRepositoryImpl;
+import com.recursia.yandextranslate.data.repositories.dictionary.WordPairsRepositoryImpl;
+import com.recursia.yandextranslate.domain.dictionary.AddToDictionaryInteractor;
+import com.recursia.yandextranslate.domain.dictionary.AddToDictionaryInteractorImpl;
+import com.recursia.yandextranslate.domain.dictionary.GetAllWordsInDictionaryInteractor;
+import com.recursia.yandextranslate.domain.dictionary.GetAllWordsInDictionaryInteractorImpl;
+import com.recursia.yandextranslate.domain.dictionary.SearchInDictionaryInteractor;
+import com.recursia.yandextranslate.domain.dictionary.SearchInDictionaryInteractorImpl;
+import com.recursia.yandextranslate.domain.dictionary.TranslateRepository;
+import com.recursia.yandextranslate.domain.dictionary.WordPairsRepository;
+import com.recursia.yandextranslate.presentation.dictionary.mapper.WordPairToViewModelMapper;
 import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
 import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
@@ -22,6 +40,8 @@ import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPai
 import com.recursia.yandextranslate.presentation.dictionary.view.decorator.MarginItemDecoration;
 
 import java.util.List;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
@@ -42,8 +62,31 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     //TODO implement dagger
     @ProvidePresenter
     DictionaryPresenter providePresenter() {
-        //return new DictionaryPresenter()
-        return null;
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        TranslateApi api = TranslateService.getInstance().getTranslateApi();
+        WordPairDao dao = WordPairsDatabase.getInstance(this).wordPairDao();
+        TranslateRepository translateRepository = new TranslateRepositoryImpl(
+                api, new NetworkTranslateModelToWordPairMapper()
+        );
+        WordPairsRepository wordPairsRepository = new WordPairsRepositoryImpl(
+                dao, new DatabaseWordPairModelToWordPairMapper(), new WordPairToDatabaseWordPairModelMapper()
+        );
+        AddToDictionaryInteractor addToDictionaryInteractor = new AddToDictionaryInteractorImpl(
+                wordPairsRepository, translateRepository
+        );
+        GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor = new GetAllWordsInDictionaryInteractorImpl(
+                wordPairsRepository
+        );
+        SearchInDictionaryInteractor searchInDictionaryInteractor = new SearchInDictionaryInteractorImpl(
+                wordPairsRepository
+        );
+        return new DictionaryPresenter(
+                compositeDisposable,
+                addToDictionaryInteractor,
+                searchInDictionaryInteractor,
+                getAllWordsInDictionaryInteractor,
+                new WordPairToViewModelMapper()
+        );
     }
 
     @Override

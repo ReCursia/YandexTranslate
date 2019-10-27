@@ -17,9 +17,6 @@ public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor 
     @Override
     public Observable<WordPair> addWord(String word, String fromLang, String toLang) {
         return translateRepository.getTranslate(word, fromLang, toLang)
-                .doOnNext(pair -> {
-                    pair.setPlainWord(word);
-                    wordsRepository.addWordPair(pair);
-                });
+                .doOnNext(pair -> wordsRepository.addWordPair(pair));
     }
 }

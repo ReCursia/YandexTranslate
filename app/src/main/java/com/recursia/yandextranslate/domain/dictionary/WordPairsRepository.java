@@ -11,8 +11,6 @@ public interface WordPairsRepository {
 
     Observable<List<WordPair>> getQueryWordPairs(String query);
 
-    Observable<Void> addWordPair(WordPair pair);
-
-    Observable<Void> deleteWordPair(WordPair pair);
+    void addWordPair(WordPair pair);
 
 }

@@ -3,9 +3,6 @@ package com.recursia.yandextranslate.data.mapper;
 import com.recursia.yandextranslate.data.models.dictionary.TranslateNetworkModel;
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
-
-//TODO NOTICE NO SETTER FOR PLAIN WORD
-
 public class NetworkTranslateModelToWordPairMapper {
 
     private final static int TRANSLATE_INDEX = 0;
