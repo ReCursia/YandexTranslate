@@ -17,4 +17,5 @@ public class GetAllWordsInDictionaryInteractorImpl implements GetAllWordsInDicti
     public Observable<List<WordPair>> getAllWords() {
         return repository.getAllWordPairs();
     }
+
 }

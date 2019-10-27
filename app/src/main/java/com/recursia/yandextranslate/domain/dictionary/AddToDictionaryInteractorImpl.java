@@ -19,4 +19,5 @@ public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor 
         return translateRepository.getTranslate(word, fromLang, toLang)
                 .doOnNext(pair -> wordsRepository.addWordPair(pair));
     }
+
 }

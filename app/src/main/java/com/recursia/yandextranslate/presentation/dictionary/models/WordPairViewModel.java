@@ -19,4 +19,5 @@ public class WordPairViewModel {
     public void setTranslatedWord(String translatedWord) {
         this.translatedWord = translatedWord;
     }
+
 }

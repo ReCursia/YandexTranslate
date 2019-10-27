@@ -22,4 +22,5 @@ public class WordPair {
     public void setTranslatedWord(String translatedWord) {
         this.translatedWord = translatedWord;
     }
+
 }

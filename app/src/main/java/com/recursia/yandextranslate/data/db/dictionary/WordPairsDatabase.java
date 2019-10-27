@@ -7,6 +7,10 @@ import android.content.Context;
 
 import com.recursia.yandextranslate.data.models.dictionary.WordPairDatabaseModel;
 
+
+/*
+This class in singleton
+ */
 @Database(entities = {WordPairDatabaseModel.class}, version = 1, exportSchema = false)
 public abstract class WordPairsDatabase extends RoomDatabase {
     private static final String DB_NAME = "word_pairs.db";

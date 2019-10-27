@@ -128,6 +128,14 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         swapButton.setOnClickListener(v -> presenter.onSwapButtonClicked());
     }
 
+    private String getTranslatedFromLang() {
+        return translateFromSpinner.getSelectedItem().toString();
+    }
+
+    private String getTranslatedToLang() {
+        return translateToSpinner.getSelectedItem().toString();
+    }
+
     private void setEditTextSubmitListener() {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -136,14 +144,6 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
             }
             return false;
         });
-    }
-
-    private String getTranslatedToLang() {
-        return translateToSpinner.getSelectedItem().toString();
-    }
-
-    private String getTranslatedFromLang() {
-        return translateFromSpinner.getSelectedItem().toString();
     }
 
     private void initAdapter() {

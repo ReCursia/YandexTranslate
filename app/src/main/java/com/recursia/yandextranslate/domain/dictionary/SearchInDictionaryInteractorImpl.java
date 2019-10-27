@@ -17,4 +17,5 @@ public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInter
     public Observable<List<WordPair>> searchWords(String word) {
         return repository.getQueryWordPairs(word);
     }
+
 }

@@ -34,4 +34,5 @@ public class MarginItemDecoration extends RecyclerView.ItemDecoration {
         outRect.bottom = marginBottom;
         outRect.top = marginTop;
     }
+
 }

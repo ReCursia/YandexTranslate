@@ -9,15 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class DatabaseWordPairModelToWordPairMapper {
-    public WordPair transform(WordPairDatabaseModel wordPairDatabaseModel) {
-        if (wordPairDatabaseModel == null) {
-            throw new IllegalArgumentException("Cannot transform a null value");
-        }
-        WordPair wordPair = new WordPair();
-        wordPair.setPlainWord(wordPairDatabaseModel.getPlainWord());
-        wordPair.setTranslatedWord(wordPairDatabaseModel.getTranslatedWord());
-        return wordPair;
-    }
 
     public List<WordPair> transform(List<WordPairDatabaseModel> wordPairsDatabase) {
         List<WordPair> wordPairCollection;
@@ -36,4 +27,15 @@ public class DatabaseWordPairModelToWordPairMapper {
     private boolean isValid(Collection<WordPairDatabaseModel> collection) {
         return (collection != null) && !(collection.isEmpty());
     }
+
+    public WordPair transform(WordPairDatabaseModel wordPairDatabaseModel) {
+        if (wordPairDatabaseModel == null) {
+            throw new IllegalArgumentException("Cannot transform a null value");
+        }
+        WordPair wordPair = new WordPair();
+        wordPair.setPlainWord(wordPairDatabaseModel.getPlainWord());
+        wordPair.setTranslatedWord(wordPairDatabaseModel.getTranslatedWord());
+        return wordPair;
+    }
+
 }

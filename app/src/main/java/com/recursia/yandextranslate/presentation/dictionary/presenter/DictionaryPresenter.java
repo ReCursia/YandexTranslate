@@ -15,7 +15,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     private CompositeDisposable compositeDisposable;

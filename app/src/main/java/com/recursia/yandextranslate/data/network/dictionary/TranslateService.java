@@ -32,4 +32,5 @@ public class TranslateService {
     public TranslateApi getTranslateApi() {
         return retrofit.create(TranslateApi.class);
     }
+
 }

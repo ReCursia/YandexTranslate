@@ -10,16 +10,6 @@ import java.util.List;
 
 public class WordPairToViewModelMapper {
 
-    public WordPairViewModel transform(WordPair pair) {
-        if (pair == null) {
-            throw new IllegalArgumentException("Cannot transform a null value");
-        }
-        WordPairViewModel viewModel = new WordPairViewModel();
-        viewModel.setPlainWord(pair.getPlainWord());
-        viewModel.setTranslatedWord(pair.getTranslatedWord());
-        return viewModel;
-    }
-
     public List<WordPairViewModel> transform(List<WordPair> wordPairsCollection) {
         List<WordPairViewModel> viewModelsCollection;
 
@@ -37,4 +27,15 @@ public class WordPairToViewModelMapper {
     private boolean isValid(Collection<WordPair> collection) {
         return (collection != null) && !(collection.isEmpty());
     }
+
+    public WordPairViewModel transform(WordPair pair) {
+        if (pair == null) {
+            throw new IllegalArgumentException("Cannot transform a null value");
+        }
+        WordPairViewModel viewModel = new WordPairViewModel();
+        viewModel.setPlainWord(pair.getPlainWord());
+        viewModel.setTranslatedWord(pair.getTranslatedWord());
+        return viewModel;
+    }
+
 }

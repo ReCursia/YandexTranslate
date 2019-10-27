@@ -39,4 +39,5 @@ public class TranslateNetworkModel {
     public void setText(List<String> text) {
         this.text = text;
     }
+
 }

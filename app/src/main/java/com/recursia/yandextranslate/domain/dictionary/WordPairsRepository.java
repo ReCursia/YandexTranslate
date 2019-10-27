@@ -7,6 +7,7 @@ import java.util.List;
 import io.reactivex.Observable;
 
 public interface WordPairsRepository {
+
     Observable<List<WordPair>> getAllWordPairs();
 
     Observable<List<WordPair>> getQueryWordPairs(String query);

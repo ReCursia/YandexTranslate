@@ -25,4 +25,5 @@ public class TranslateRepositoryImpl implements TranslateRepository {
                 .map(mapper::transform)
                 .doOnNext(wordPair -> wordPair.setPlainWord(text));
     }
+
 }

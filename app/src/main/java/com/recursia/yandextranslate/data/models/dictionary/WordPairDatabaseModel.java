@@ -33,4 +33,5 @@ public class WordPairDatabaseModel {
     public void setTranslatedWord(String translatedWord) {
         this.translatedWord = translatedWord;
     }
+
 }
