@@ -2,7 +2,6 @@ package com.recursia.yandextranslate.presentation.dictionary.view;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
-import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
@@ -13,7 +12,7 @@ import java.util.List;
 public interface DictionaryView extends MvpView {
     void setWords(List<WordPairViewModel> pairs);
 
-    @StateStrategyType(AddToEndStrategy.class)
+    @StateStrategyType(SkipStrategy.class)
     void addWord(WordPairViewModel pair);
 
     @StateStrategyType(SkipStrategy.class)
