@@ -27,6 +27,7 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     @Override
     public Observable<List<WordPair>> getAllWordPairs() {
         return dao.getAllWordPairs()
+                .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(databaseModelToWordPairMapper::transform);
     }
@@ -38,7 +39,9 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
 
     @Override
     public Observable<List<WordPair>> getQueryWordPairs(String query) {
-        return dao.getAllQueryWordPairs(query)
+        //TODO toObservable? for sure?
+        return dao.getAllQueryWordPairs('%' + query + '%')
+                .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(databaseModelToWordPairMapper::transform);
     }
