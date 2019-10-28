@@ -1,22 +1,14 @@
 package com.recursia.yandextranslate.data.models.dictionary;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-@Entity(tableName = "word_pairs")
+@Entity(tableName = "word_pairs", primaryKeys = {"plainWord", "translatedWord"})
 public class WordPairDatabaseModel {
-    @PrimaryKey(autoGenerate = true)
-    private long id;
+    @NonNull
     private String plainWord;
+    @NonNull
     private String translatedWord;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getPlainWord() {
         return plainWord;

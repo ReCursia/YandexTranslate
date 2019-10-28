@@ -7,8 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /*
 This class is singleton
  */
-//TODO make it with dagger
-
 public class TranslateService {
     private static final String BASE_URL = "https://translate.yandex.net/api/v1.5/tr.json/";
     private static TranslateService mInstance;

@@ -11,7 +11,7 @@ import com.recursia.yandextranslate.data.models.dictionary.WordPairDatabaseModel
 /*
 This class is singleton
  */
-@Database(entities = {WordPairDatabaseModel.class}, version = 1, exportSchema = false)
+@Database(entities = {WordPairDatabaseModel.class}, version = 2, exportSchema = false)
 public abstract class WordPairsDatabase extends RoomDatabase {
     private static final String DB_NAME = "word_pairs.db";
     private static WordPairsDatabase mInstance;
@@ -24,6 +24,7 @@ public abstract class WordPairsDatabase extends RoomDatabase {
         }
         return mInstance;
     }
+
 
     public abstract WordPairDao wordPairDao();
 
