@@ -10,8 +10,8 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 public class TranslateRepositoryImpl implements TranslateRepository {
-    private TranslateApi api;
-    private NetworkTranslateModelToWordPairMapper mapper;
+    private final TranslateApi api;
+    private final NetworkTranslateModelToWordPairMapper mapper;
 
     public TranslateRepositoryImpl(TranslateApi api, NetworkTranslateModelToWordPairMapper mapper) {
         this.api = api;

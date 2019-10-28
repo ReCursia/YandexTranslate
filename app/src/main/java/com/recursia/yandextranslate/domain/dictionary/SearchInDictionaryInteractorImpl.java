@@ -7,7 +7,7 @@ import java.util.List;
 import io.reactivex.Observable;
 
 public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInteractor {
-    private WordPairsRepository repository;
+    private final WordPairsRepository repository;
 
     public SearchInDictionaryInteractorImpl(WordPairsRepository repository) {
         this.repository = repository;

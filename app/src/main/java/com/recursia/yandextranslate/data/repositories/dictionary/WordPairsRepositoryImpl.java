@@ -12,9 +12,9 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 public class WordPairsRepositoryImpl implements WordPairsRepository {
-    private WordPairDao dao;
-    private DatabaseWordPairModelToWordPairMapper databaseModelToWordPairMapper;
-    private WordPairToDatabaseWordPairModelMapper wordPairToDatabaseModelMapper;
+    private final WordPairDao dao;
+    private final DatabaseWordPairModelToWordPairMapper databaseModelToWordPairMapper;
+    private final WordPairToDatabaseWordPairModelMapper wordPairToDatabaseModelMapper;
 
     public WordPairsRepositoryImpl(WordPairDao dao,
                                    DatabaseWordPairModelToWordPairMapper databaseModelToWordPairMapper,

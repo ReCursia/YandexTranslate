@@ -62,7 +62,6 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     //TODO implement dagger
     @ProvidePresenter
     DictionaryPresenter providePresenter() {
-        CompositeDisposable compositeDisposable = new CompositeDisposable();
         TranslateApi api = TranslateService.getInstance().getTranslateApi();
         WordPairDao dao = WordPairsDatabase.getInstance(this).wordPairDao();
         TranslateRepository translateRepository = new TranslateRepositoryImpl(
@@ -81,7 +80,6 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
                 wordPairsRepository
         );
         return new DictionaryPresenter(
-                compositeDisposable,
                 addToDictionaryInteractor,
                 searchInDictionaryInteractor,
                 getAllWordsInDictionaryInteractor,

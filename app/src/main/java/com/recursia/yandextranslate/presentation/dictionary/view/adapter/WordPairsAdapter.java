@@ -52,8 +52,8 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
     }
 
     static class WordPairHolder extends RecyclerView.ViewHolder {
-        TextView plainText;
-        TextView translatedText;
+        final TextView plainText;
+        final TextView translatedText;
 
         WordPairHolder(@NonNull View itemView) {
             super(itemView);

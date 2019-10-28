@@ -5,8 +5,8 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import io.reactivex.Observable;
 
 public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor {
-    private WordPairsRepository wordsRepository;
-    private TranslateRepository translateRepository;
+    private final WordPairsRepository wordsRepository;
+    private final TranslateRepository translateRepository;
 
     //TODO implement dagger
     public AddToDictionaryInteractorImpl(WordPairsRepository wordsRepository, TranslateRepository translateRepository) {

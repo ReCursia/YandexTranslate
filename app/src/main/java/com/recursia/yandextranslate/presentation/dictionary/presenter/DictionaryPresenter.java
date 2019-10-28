@@ -17,19 +17,19 @@ import io.reactivex.disposables.Disposable;
 
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
-    private CompositeDisposable compositeDisposable;
-    private AddToDictionaryInteractor addToDictionaryInteractor;
-    private SearchInDictionaryInteractor searchInDictionaryInteractor;
-    private GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor;
-    private WordPairToViewModelMapper mapper;
+    private final CompositeDisposable compositeDisposable;
+    private final AddToDictionaryInteractor addToDictionaryInteractor;
+    private final SearchInDictionaryInteractor searchInDictionaryInteractor;
+    private final GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor;
+    private final WordPairToViewModelMapper mapper;
 
     //TODO add dagger injection
-    public DictionaryPresenter(CompositeDisposable compositeDisposable,
-                               AddToDictionaryInteractor addToDictionaryInteractor,
-                               SearchInDictionaryInteractor searchInDictionaryInteractor,
-                               GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor,
-                               WordPairToViewModelMapper mapper) {
-        this.compositeDisposable = compositeDisposable;
+    public DictionaryPresenter(
+            AddToDictionaryInteractor addToDictionaryInteractor,
+            SearchInDictionaryInteractor searchInDictionaryInteractor,
+            GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor,
+            WordPairToViewModelMapper mapper) {
+        this.compositeDisposable = new CompositeDisposable();
         this.addToDictionaryInteractor = addToDictionaryInteractor;
         this.getAllWordsInDictionaryInteractor = getAllWordsInDictionaryInteractor;
         this.searchInDictionaryInteractor = searchInDictionaryInteractor;
