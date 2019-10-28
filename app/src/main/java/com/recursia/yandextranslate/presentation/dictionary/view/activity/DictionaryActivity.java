@@ -46,7 +46,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
     private static final boolean REVERSE_LAYOUT = false;
-    private static final int WORD_PAIR_ITEM_MARGIN = 8; //dp
+
     Button addButton;
     Button swapButton;
     EditText editText;
@@ -153,7 +153,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
-        recyclerView.addItemDecoration(new MarginItemDecoration(this, WORD_PAIR_ITEM_MARGIN));
+        recyclerView.addItemDecoration(new MarginItemDecoration(this, getResources().getDimensionPixelSize(R.dimen.word_pair_item_margin)));
     }
 
     @Override
