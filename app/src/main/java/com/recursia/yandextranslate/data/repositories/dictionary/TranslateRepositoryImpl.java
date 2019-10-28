@@ -6,6 +6,8 @@ import com.recursia.yandextranslate.domain.dictionary.TranslateRepository;
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import com.recursia.yandextranslate.utils.GetTranslateCodeUtils;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -13,6 +15,7 @@ public class TranslateRepositoryImpl implements TranslateRepository {
     private final TranslateApi mApi;
     private final NetworkTranslateModelToWordPairMapper mMapper;
 
+    @Inject
     public TranslateRepositoryImpl(TranslateApi mApi, NetworkTranslateModelToWordPairMapper mMapper) {
         this.mApi = mApi;
         this.mMapper = mMapper;

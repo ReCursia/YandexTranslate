@@ -11,6 +11,8 @@ import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -23,7 +25,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     private final GetAllWordsInDictionaryInteractor mGetAllWordsInDictionaryInteractor;
     private final WordPairToViewModelMapper mMapper;
 
-    //TODO add dagger injection
+    @Inject
     public DictionaryPresenter(
             AddToDictionaryInteractor mAddToDictionaryInteractor,
             SearchInDictionaryInteractor mSearchInDictionaryInteractor,

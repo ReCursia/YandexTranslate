@@ -8,6 +8,8 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -16,6 +18,7 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     private final DatabaseWordPairModelToWordPairMapper mDatabaseModelToWordPairMapper;
     private final WordPairToDatabaseWordPairModelMapper mWordPairToDatabaseModelMapper;
 
+    @Inject
     public WordPairsRepositoryImpl(WordPairDao mDao,
                                    DatabaseWordPairModelToWordPairMapper mDatabaseModelToWordPairMapper,
                                    WordPairToDatabaseWordPairModelMapper mWordPairToDatabaseModelMapper) {

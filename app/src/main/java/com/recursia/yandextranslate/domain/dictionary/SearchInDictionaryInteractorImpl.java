@@ -4,11 +4,14 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 
 public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInteractor {
     private final WordPairsRepository mRepository;
 
+    @Inject
     public SearchInDictionaryInteractorImpl(WordPairsRepository mRepository) {
         this.mRepository = mRepository;
     }
