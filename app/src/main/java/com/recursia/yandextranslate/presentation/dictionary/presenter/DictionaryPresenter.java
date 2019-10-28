@@ -17,66 +17,65 @@ import io.reactivex.disposables.Disposable;
 
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
-    private final CompositeDisposable compositeDisposable;
-    private final AddToDictionaryInteractor addToDictionaryInteractor;
-    private final SearchInDictionaryInteractor searchInDictionaryInteractor;
-    private final GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor;
-    private final WordPairToViewModelMapper mapper;
+    private final CompositeDisposable mCompositeDisposable;
+    private final AddToDictionaryInteractor mAddToDictionaryInteractor;
+    private final SearchInDictionaryInteractor mSearchInDictionaryInteractor;
+    private final GetAllWordsInDictionaryInteractor mGetAllWordsInDictionaryInteractor;
+    private final WordPairToViewModelMapper mMapper;
 
     //TODO add dagger injection
     public DictionaryPresenter(
-            AddToDictionaryInteractor addToDictionaryInteractor,
-            SearchInDictionaryInteractor searchInDictionaryInteractor,
-            GetAllWordsInDictionaryInteractor getAllWordsInDictionaryInteractor,
-            WordPairToViewModelMapper mapper) {
-        this.compositeDisposable = new CompositeDisposable();
-        this.addToDictionaryInteractor = addToDictionaryInteractor;
-        this.getAllWordsInDictionaryInteractor = getAllWordsInDictionaryInteractor;
-        this.searchInDictionaryInteractor = searchInDictionaryInteractor;
-        this.mapper = mapper;
+            AddToDictionaryInteractor mAddToDictionaryInteractor,
+            SearchInDictionaryInteractor mSearchInDictionaryInteractor,
+            GetAllWordsInDictionaryInteractor mGetAllWordsInDictionaryInteractor,
+            WordPairToViewModelMapper mMapper) {
+        this.mCompositeDisposable = new CompositeDisposable();
+        this.mAddToDictionaryInteractor = mAddToDictionaryInteractor;
+        this.mGetAllWordsInDictionaryInteractor = mGetAllWordsInDictionaryInteractor;
+        this.mSearchInDictionaryInteractor = mSearchInDictionaryInteractor;
+        this.mMapper = mMapper;
     }
 
     @Override
     public void onDestroy() {
-        compositeDisposable.dispose();
+        mCompositeDisposable.dispose();
     }
 
     @Override
     protected void onFirstViewAttach() {
-        getViewState().showLoading();
-        Disposable d = getAllWordsInDictionaryInteractor.getAllWords()
-                .map(mapper::transform)
+        Disposable d = mGetAllWordsInDictionaryInteractor.getAllWords()
+                .doOnSubscribe(disposable -> getViewState().showLoading())
+                .doFinally(() -> getViewState().hideLoading())
+                .map(mMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);
-        compositeDisposable.add(d);
+        mCompositeDisposable.add(d);
     }
 
     private void handleWordPairs(List<WordPairViewModel> wordPairs) {
         getViewState().setWords(wordPairs);
-        getViewState().hideLoading();
     }
 
     private void handleError(Throwable t) {
         getViewState().showErrorMessage(t.getLocalizedMessage());
-        getViewState().hideLoading();
     }
 
     public void onAddButtonClicked(String text, String translatedFrom, String translatedTo) {
-        Disposable d = addToDictionaryInteractor.addWord(text, translatedFrom, translatedTo)
-                .map(mapper::transform)
+        Disposable d = mAddToDictionaryInteractor.addWord(text, translatedFrom, translatedTo)
+                .map(mMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(wordPairViewModel -> getViewState().addWord(wordPairViewModel),
                         throwable -> getViewState().showErrorMessage(throwable.getLocalizedMessage()));
-        compositeDisposable.add(d);
+        mCompositeDisposable.add(d);
     }
 
     public void onTextSubmitted(String text) {
         getViewState().showLoading();
-        Disposable d = searchInDictionaryInteractor.searchWords(text)
-                .map(mapper::transform)
+        Disposable d = mSearchInDictionaryInteractor.searchWords(text)
+                .map(mMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);
-        compositeDisposable.add(d);
+        mCompositeDisposable.add(d);
     }
 
     public void onSwapButtonClicked() {

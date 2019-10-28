@@ -41,8 +41,6 @@ import com.recursia.yandextranslate.presentation.dictionary.view.decorator.Margi
 
 import java.util.List;
 
-import io.reactivex.disposables.CompositeDisposable;
-
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
     private static final boolean REVERSE_LAYOUT = false;

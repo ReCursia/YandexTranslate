@@ -12,38 +12,38 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 public class WordPairsRepositoryImpl implements WordPairsRepository {
-    private final WordPairDao dao;
-    private final DatabaseWordPairModelToWordPairMapper databaseModelToWordPairMapper;
-    private final WordPairToDatabaseWordPairModelMapper wordPairToDatabaseModelMapper;
+    private final WordPairDao mDao;
+    private final DatabaseWordPairModelToWordPairMapper mDatabaseModelToWordPairMapper;
+    private final WordPairToDatabaseWordPairModelMapper mWordPairToDatabaseModelMapper;
 
-    public WordPairsRepositoryImpl(WordPairDao dao,
-                                   DatabaseWordPairModelToWordPairMapper databaseModelToWordPairMapper,
-                                   WordPairToDatabaseWordPairModelMapper wordPairToDatabaseModelMapper) {
-        this.dao = dao;
-        this.databaseModelToWordPairMapper = databaseModelToWordPairMapper;
-        this.wordPairToDatabaseModelMapper = wordPairToDatabaseModelMapper;
+    public WordPairsRepositoryImpl(WordPairDao mDao,
+                                   DatabaseWordPairModelToWordPairMapper mDatabaseModelToWordPairMapper,
+                                   WordPairToDatabaseWordPairModelMapper mWordPairToDatabaseModelMapper) {
+        this.mDao = mDao;
+        this.mDatabaseModelToWordPairMapper = mDatabaseModelToWordPairMapper;
+        this.mWordPairToDatabaseModelMapper = mWordPairToDatabaseModelMapper;
     }
 
     @Override
     public Observable<List<WordPair>> getAllWordPairs() {
-        return dao.getAllWordPairs()
+        return mDao.getAllWordPairs()
                 .toObservable()
                 .subscribeOn(Schedulers.io())
-                .map(databaseModelToWordPairMapper::transform);
+                .map(mDatabaseModelToWordPairMapper::transform);
     }
 
     @Override
     public void addWordPair(WordPair pair) {
-        dao.insertWordPair(wordPairToDatabaseModelMapper.transform(pair));
+        mDao.insertWordPair(mWordPairToDatabaseModelMapper.transform(pair));
     }
 
     @Override
     public Observable<List<WordPair>> getQueryWordPairs(String query) {
         //TODO toObservable? for sure?
-        return dao.getAllQueryWordPairs('%' + query + '%')
+        return mDao.getAllQueryWordPairs('%' + query + '%')
                 .toObservable()
                 .subscribeOn(Schedulers.io())
-                .map(databaseModelToWordPairMapper::transform);
+                .map(mDatabaseModelToWordPairMapper::transform);
     }
 
 }

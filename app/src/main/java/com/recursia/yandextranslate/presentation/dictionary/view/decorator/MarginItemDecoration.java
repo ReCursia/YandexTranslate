@@ -9,30 +9,30 @@ import android.util.TypedValue;
 import android.view.View;
 
 public class MarginItemDecoration extends RecyclerView.ItemDecoration {
-    private final int marginLeft;
-    private final int marginRight;
-    private final int marginTop;
-    private final int marginBottom;
+    private final int mMarginLeft;
+    private final int mMarginRight;
+    private final int mMarginTop;
+    private final int mMarginBottom;
 
     public MarginItemDecoration(Context context, int marginAll) {
         this(context, marginAll, marginAll, marginAll, marginAll);
     }
 
-    public MarginItemDecoration(Context context, int marginLeft, int marginRight, int marginTop, int marginBottom) {
+    public MarginItemDecoration(Context context, int mMarginLeft, int mMarginRight, int mMarginTop, int mMarginBottom) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        this.marginLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginLeft, metrics);
-        this.marginRight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginRight, metrics);
-        this.marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginTop, metrics);
-        this.marginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginBottom, metrics);
+        this.mMarginLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMarginLeft, metrics);
+        this.mMarginRight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMarginRight, metrics);
+        this.mMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMarginTop, metrics);
+        this.mMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMarginBottom, metrics);
     }
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.left = marginLeft;
-        outRect.right = marginRight;
-        outRect.bottom = marginBottom;
-        outRect.top = marginTop;
+        outRect.left = mMarginLeft;
+        outRect.right = mMarginRight;
+        outRect.bottom = mMarginBottom;
+        outRect.top = mMarginTop;
     }
 
 }

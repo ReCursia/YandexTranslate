@@ -1,6 +1,6 @@
 package com.recursia.yandextranslate.utils;
 
-public class GetTranslateCodeUtils {
+public abstract class GetTranslateCodeUtils {
 
     public static String getCode(String from, String to) {
         return getIsoCode(from) + "-" + getIsoCode(to);

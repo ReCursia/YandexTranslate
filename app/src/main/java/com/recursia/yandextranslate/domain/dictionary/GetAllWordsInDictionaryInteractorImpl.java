@@ -7,15 +7,15 @@ import java.util.List;
 import io.reactivex.Observable;
 
 public class GetAllWordsInDictionaryInteractorImpl implements GetAllWordsInDictionaryInteractor {
-    private final WordPairsRepository repository;
+    private final WordPairsRepository mRepository;
 
-    public GetAllWordsInDictionaryInteractorImpl(WordPairsRepository repository) {
-        this.repository = repository;
+    public GetAllWordsInDictionaryInteractorImpl(WordPairsRepository mRepository) {
+        this.mRepository = mRepository;
     }
 
     @Override
     public Observable<List<WordPair>> getAllWords() {
-        return repository.getAllWordPairs();
+        return mRepository.getAllWordPairs();
     }
 
 }

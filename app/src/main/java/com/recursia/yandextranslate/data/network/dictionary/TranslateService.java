@@ -11,11 +11,11 @@ This class is singleton
 
 public class TranslateService {
     private static final String BASE_URL = "https://translate.yandex.net/api/v1.5/tr.json/";
-    private static TranslateService instance;
-    private final Retrofit retrofit;
+    private static TranslateService mInstance;
+    private final Retrofit mRetrofit;
 
     private TranslateService() {
-        retrofit = new Retrofit.Builder()
+        mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -23,14 +23,14 @@ public class TranslateService {
     }
 
     public static synchronized TranslateService getInstance() {
-        if (instance == null) {
-            instance = new TranslateService();
+        if (mInstance == null) {
+            mInstance = new TranslateService();
         }
-        return instance;
+        return mInstance;
     }
 
     public TranslateApi getTranslateApi() {
-        return retrofit.create(TranslateApi.class);
+        return mRetrofit.create(TranslateApi.class);
     }
 
 }

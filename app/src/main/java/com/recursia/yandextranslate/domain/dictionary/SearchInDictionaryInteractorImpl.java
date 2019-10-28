@@ -7,15 +7,15 @@ import java.util.List;
 import io.reactivex.Observable;
 
 public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInteractor {
-    private final WordPairsRepository repository;
+    private final WordPairsRepository mRepository;
 
-    public SearchInDictionaryInteractorImpl(WordPairsRepository repository) {
-        this.repository = repository;
+    public SearchInDictionaryInteractorImpl(WordPairsRepository mRepository) {
+        this.mRepository = mRepository;
     }
 
     @Override
     public Observable<List<WordPair>> searchWords(String word) {
-        return repository.getQueryWordPairs(word);
+        return mRepository.getQueryWordPairs(word);
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.WordPairHolder> {
 
     private static final boolean ATTACH_TO_ROOT = false;
-    private List<WordPairViewModel> wordPairs;
+    private List<WordPairViewModel> mWordPairs;
 
     @NonNull
     @Override
@@ -29,25 +29,25 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
     }
 
     public void setWordPairs(List<WordPairViewModel> wordPairs) {
-        this.wordPairs = wordPairs;
+        this.mWordPairs = wordPairs;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull WordPairHolder wordPairHolder, int i) {
-        WordPairViewModel item = wordPairs.get(i);
+        WordPairViewModel item = mWordPairs.get(i);
         wordPairHolder.plainText.setText(item.getPlainWord());
         wordPairHolder.translatedText.setText(item.getTranslatedWord());
     }
 
     @Override
     public int getItemCount() {
-        return (wordPairs != null) ? wordPairs.size() : 0;
+        return (mWordPairs != null) ? mWordPairs.size() : 0;
     }
 
     public void addWord(WordPairViewModel pair) {
-        int size = wordPairs.size();
-        wordPairs.add(pair);
+        int size = mWordPairs.size();
+        mWordPairs.add(pair);
         notifyItemInserted(size);
     }
 

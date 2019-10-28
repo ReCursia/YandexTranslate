@@ -14,15 +14,15 @@ This class is singleton
 @Database(entities = {WordPairDatabaseModel.class}, version = 1, exportSchema = false)
 public abstract class WordPairsDatabase extends RoomDatabase {
     private static final String DB_NAME = "word_pairs.db";
-    private static WordPairsDatabase instance;
+    private static WordPairsDatabase mInstance;
 
     public static synchronized WordPairsDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = Room.databaseBuilder(context, WordPairsDatabase.class, DB_NAME)
+        if (mInstance == null) {
+            mInstance = Room.databaseBuilder(context, WordPairsDatabase.class, DB_NAME)
                     .fallbackToDestructiveMigration() //deletes all data after version increment
                     .build();
         }
-        return instance;
+        return mInstance;
     }
 
     public abstract WordPairDao wordPairDao();

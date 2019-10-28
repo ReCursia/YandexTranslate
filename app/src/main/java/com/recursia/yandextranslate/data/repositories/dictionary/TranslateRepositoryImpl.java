@@ -10,19 +10,19 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 public class TranslateRepositoryImpl implements TranslateRepository {
-    private final TranslateApi api;
-    private final NetworkTranslateModelToWordPairMapper mapper;
+    private final TranslateApi mApi;
+    private final NetworkTranslateModelToWordPairMapper mMapper;
 
-    public TranslateRepositoryImpl(TranslateApi api, NetworkTranslateModelToWordPairMapper mapper) {
-        this.api = api;
-        this.mapper = mapper;
+    public TranslateRepositoryImpl(TranslateApi mApi, NetworkTranslateModelToWordPairMapper mMapper) {
+        this.mApi = mApi;
+        this.mMapper = mMapper;
     }
 
     @Override
     public Observable<WordPair> getTranslate(String text, String fromLang, String toLang) {
-        return api.getTranslate(text, GetTranslateCodeUtils.getCode(fromLang, toLang))
+        return mApi.getTranslate(text, GetTranslateCodeUtils.getCode(fromLang, toLang))
                 .subscribeOn(Schedulers.io())
-                .map(mapper::transform)
+                .map(mMapper::transform)
                 .doOnNext(wordPair -> wordPair.setPlainWord(text));
     }
 
