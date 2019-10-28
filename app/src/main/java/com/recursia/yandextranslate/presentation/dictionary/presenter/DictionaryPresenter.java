@@ -55,7 +55,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
 
     private void handleWordPairs(List<WordPairViewModel> wordPairs) {
         getViewState().setWords(wordPairs);
-        getViewState().hideLoading(); //TODO doOnFinally?
+        getViewState().hideLoading();
     }
 
     private void handleError(Throwable t) {

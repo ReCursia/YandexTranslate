@@ -42,7 +42,6 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
 
     @Override
     public Observable<List<WordPair>> getQueryWordPairs(String query) {
-        //TODO toObservable? for sure?
         return mDao.getAllQueryWordPairs('%' + query + '%')
                 .toObservable()
                 .subscribeOn(Schedulers.io())

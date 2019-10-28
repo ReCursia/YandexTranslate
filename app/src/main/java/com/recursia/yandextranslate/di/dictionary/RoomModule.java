@@ -18,7 +18,7 @@ import dagger.Provides;
 @Module(includes = {MapperModule.class})
 public class RoomModule {
     private static final String DB_NAME = "word_pairs.db";
-    private WordPairsDatabase database;
+    private final WordPairsDatabase database;
 
     public RoomModule(Application application) {
         database = Room.databaseBuilder(application, WordPairsDatabase.class, DB_NAME).build();
