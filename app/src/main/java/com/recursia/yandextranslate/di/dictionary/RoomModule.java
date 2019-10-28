@@ -15,7 +15,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {MapperModule.class, AppModule.class})
+@Module(includes = {MapperModule.class})
 public class RoomModule {
     private static final String DB_NAME = "word_pairs.db";
     private WordPairsDatabase database;

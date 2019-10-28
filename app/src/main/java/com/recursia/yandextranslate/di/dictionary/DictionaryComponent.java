@@ -9,6 +9,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {InteractorModule.class})
 public interface DictionaryComponent {
-
     DictionaryPresenter getDictionaryPresenter();
 }
