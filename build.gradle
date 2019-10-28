@@ -5,6 +5,9 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven {
+            url 'https://dl.bintray.com/terrakok/terramaven/'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.1'
