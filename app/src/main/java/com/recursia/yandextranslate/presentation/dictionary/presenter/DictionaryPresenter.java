@@ -45,7 +45,6 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     protected void onFirstViewAttach() {
         Disposable d = mGetAllWordsInDictionaryInteractor.getAllWords()
                 .doOnSubscribe(disposable -> getViewState().showLoading())
-                .doFinally(() -> getViewState().hideLoading())
                 .map(mMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);
@@ -54,10 +53,12 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
 
     private void handleWordPairs(List<WordPairViewModel> wordPairs) {
         getViewState().setWords(wordPairs);
+        getViewState().hideLoading(); //TODO doOnFinally?
     }
 
     private void handleError(Throwable t) {
         getViewState().showErrorMessage(t.getLocalizedMessage());
+        getViewState().hideLoading();
     }
 
     public void onAddButtonClicked(String text, String translatedFrom, String translatedTo) {
@@ -72,6 +73,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     public void onTextSubmitted(String text) {
         getViewState().showLoading();
         Disposable d = mSearchInDictionaryInteractor.searchWords(text)
+                .doOnSubscribe(disposable -> getViewState().showLoading())
                 .map(mMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleWordPairs, this::handleError);

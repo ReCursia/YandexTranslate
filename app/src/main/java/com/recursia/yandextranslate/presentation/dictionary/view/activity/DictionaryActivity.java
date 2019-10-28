@@ -92,7 +92,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         translateFromSpinner.setSelection(toIndex);
         translateToSpinner.setSelection(fromIndex);
 
-        Toast.makeText(this, "Swapped successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Swapped successfully", Toast.LENGTH_LONG).show();
     }
 
     @Override
