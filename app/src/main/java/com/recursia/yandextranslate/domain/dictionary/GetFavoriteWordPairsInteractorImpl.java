@@ -9,15 +9,15 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 
 public class GetFavoriteWordPairsInteractorImpl implements GetFavoriteWordPairsInteractor {
-    private final WordPairsRepository repository;
+    private final WordPairsRepository mRepository;
 
     @Inject
-    public GetFavoriteWordPairsInteractorImpl(WordPairsRepository repository) {
-        this.repository = repository;
+    public GetFavoriteWordPairsInteractorImpl(WordPairsRepository mRepository) {
+        this.mRepository = mRepository;
     }
 
     @Override
     public Observable<List<WordPair>> getAllFavoriteWordPairs() {
-        return repository.getAllFavoriteWordPairs();
+        return mRepository.getAllFavoriteWordPairs();
     }
 }
