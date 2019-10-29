@@ -140,7 +140,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
             @Override
             public void afterTextChanged(Editable s) {
-                presenter.onTextChanged(s.toString());
+                presenter.onQueryTextChanged(s.toString());
             }
         });
     }
