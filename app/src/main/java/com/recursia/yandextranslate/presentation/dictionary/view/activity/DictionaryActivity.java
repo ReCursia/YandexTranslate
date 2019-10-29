@@ -1,12 +1,15 @@
 package com.recursia.yandextranslate.presentation.dictionary.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,25 +29,49 @@ import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewM
 import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
 import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
-import com.recursia.yandextranslate.presentation.dictionary.view.decorator.MarginItemDecoration;
 
 import java.util.List;
+
 
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
 
     private static final boolean REVERSE_LAYOUT = false;
-
-    Button addButton;
-    Button swapButton;
-    EditText editText;
-    Spinner translateFromSpinner;
-    Spinner translateToSpinner;
-    RecyclerView recyclerView;
-    ProgressBar progressBar;
-
     @InjectPresenter
     DictionaryPresenter presenter;
-    WordPairsAdapter adapter;
+    private Button addButton;
+    private Button swapButton;
+    private EditText editText;
+    private Spinner translateFromSpinner;
+    private Spinner translateToSpinner;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
+    private WordPairsAdapter adapter;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dictionary_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.favoriteItem) {
+            presenter.onItemFavoriteClicked();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void openFavoriteScreen() {
+        Intent intent = new Intent(this, FavoriteActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void updateWord(WordPairViewModel pair, int position) {
+        adapter.updateWord(pair, position);
+    }
 
     @ProvidePresenter
     DictionaryPresenter providePresenter() {
@@ -70,7 +97,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         setContentView(R.layout.activity_main);
         bindViews();
         setOnClickButtonsListeners();
-        setEditTextSubmitListeners();
+        setEditTextSubmitListener();
         initAdapter();
         initRecyclerView();
     }
@@ -101,13 +128,15 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         return translateToSpinner.getSelectedItem().toString();
     }
 
-    private void setEditTextSubmitListeners() {
+    private void setEditTextSubmitListener() {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -118,12 +147,12 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
     private void initAdapter() {
         adapter = new WordPairsAdapter();
+        adapter.setOnClickListener((wordPair, position) -> presenter.onWordPairClicked(wordPair, position));
         recyclerView.setAdapter(adapter);
     }
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
-        recyclerView.addItemDecoration(new MarginItemDecoration(this, getResources().getDimensionPixelSize(R.dimen.word_pair_item_margin)));
     }
 
     @Override

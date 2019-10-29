@@ -28,7 +28,7 @@ public class DatabaseWordPairModelToWordPairMapper {
         return (collection != null) && !(collection.isEmpty());
     }
 
-    public WordPair transform(WordPairDatabaseModel wordPairDatabaseModel) {
+    private WordPair transform(WordPairDatabaseModel wordPairDatabaseModel) {
         if (wordPairDatabaseModel == null) {
             throw new IllegalArgumentException("Cannot transform a null value");
         }

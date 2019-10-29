@@ -12,6 +12,12 @@ public interface WordPairsRepository {
 
     Observable<List<WordPair>> getQueryWordPairs(String query);
 
+    void makeFavoriteWordPair(WordPair wordPair);
+
+    void removeFavoriteWordPair(WordPair wordPair);
+
     void addWordPair(WordPair pair);
+
+    Observable<List<WordPair>> getAllFavoriteWordPairs();
 
 }

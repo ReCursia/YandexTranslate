@@ -24,15 +24,16 @@ public class WordPairDatabaseModel {
         return plainWord;
     }
 
-    public void setPlainWord(String plainWord) {
+    public void setPlainWord(@NonNull String plainWord) {
         this.plainWord = plainWord;
     }
+
 
     public String getTranslatedWord() {
         return translatedWord;
     }
 
-    public void setTranslatedWord(String translatedWord) {
+    public void setTranslatedWord(@NonNull String translatedWord) {
         this.translatedWord = translatedWord;
     }
 

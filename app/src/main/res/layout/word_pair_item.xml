@@ -4,31 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:paddingTop="@dimen/word_pair_item_padding"
+    android:paddingBottom="@dimen/word_pair_item_padding"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
 
     <TextView
-        android:gravity="center"
         android:id="@+id/plainText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
+        android:layout_weight="1"
+        android:gravity="center" />
 
     <TextView
-        android:gravity="center"
         android:id="@+id/translatedText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="center" />
 
     <ImageView
-        android:tint="@color/yellow"
-        android:contentDescription="@string/favorite_word_star"
-        android:id="@+id/imageView"
+        android:id="@+id/favoriteIcon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
+        android:contentDescription="@string/favorite_word_star"
+        android:tint="@color/yellow"
         app:srcCompat="@drawable/ic_star_24px" />
 </LinearLayout>

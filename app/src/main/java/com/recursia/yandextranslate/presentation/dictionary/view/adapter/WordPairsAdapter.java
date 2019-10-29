@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
@@ -16,6 +17,11 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
 
     private static final boolean ATTACH_TO_ROOT = false;
     private List<WordPairViewModel> mWordPairs;
+    private OnWordPairClicked listener;
+
+    public void setOnClickListener(OnWordPairClicked listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -38,6 +44,17 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         WordPairViewModel item = mWordPairs.get(i);
         wordPairHolder.plainText.setText(item.getPlainWord());
         wordPairHolder.translatedText.setText(item.getTranslatedWord());
+
+        int visibility = item.isFavorite() ? View.VISIBLE : View.GONE;
+        wordPairHolder.favoriteIcon.setVisibility(visibility);
+
+        wordPairHolder.itemView.setOnClickListener(
+                v -> {
+                    if (listener != null) {
+                        listener.onClick(item, wordPairHolder.getAdapterPosition());
+                    }
+                }
+        );
     }
 
     @Override
@@ -51,14 +68,26 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         notifyItemInserted(size);
     }
 
-    static class WordPairHolder extends RecyclerView.ViewHolder {
+    public void deleteWord(int position) {
+        mWordPairs.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void updateWord(WordPairViewModel pair, int position) {
+        mWordPairs.set(position, pair);
+        notifyItemChanged(position);
+    }
+
+    class WordPairHolder extends RecyclerView.ViewHolder {
         final TextView plainText;
         final TextView translatedText;
+        final ImageView favoriteIcon;
 
         WordPairHolder(@NonNull View itemView) {
             super(itemView);
             plainText = itemView.findViewById(R.id.plainText);
             translatedText = itemView.findViewById(R.id.translatedText);
+            favoriteIcon = itemView.findViewById(R.id.favoriteIcon);
         }
     }
 }

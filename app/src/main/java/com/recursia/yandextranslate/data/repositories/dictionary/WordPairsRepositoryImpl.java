@@ -41,11 +41,31 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     }
 
     @Override
+    public Observable<List<WordPair>> getAllFavoriteWordPairs() {
+        return mDao.getAllFavoriteWordPairs()
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .map(mDatabaseModelToWordPairMapper::transform);
+    }
+
+    @Override
     public Observable<List<WordPair>> getQueryWordPairs(String query) {
         return mDao.getAllQueryWordPairs('%' + query + '%')
                 .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(mDatabaseModelToWordPairMapper::transform);
+    }
+
+    @Override
+    public void makeFavoriteWordPair(WordPair pair) {
+        pair.setFavorite(true);
+        mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair));
+    }
+
+    @Override
+    public void removeFavoriteWordPair(WordPair pair) {
+        pair.setFavorite(false);
+        mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair));
     }
 
 }

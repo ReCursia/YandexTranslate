@@ -5,6 +5,8 @@
     <string name="translate_to">Translate to</string>
     <string name="swapButton">Swap</string>
     <string name="favorite_word_star">Favorite word star</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorite_title">Favorite</string>
 
     <string-array name="languages">
         <item>Russian</item>
