@@ -93,7 +93,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
 
     private void handleWordPairs(List<WordPairViewModel> wordPairs) {
         getViewState().setWords(wordPairs);
-        getViewState().hideLoading(); //TODO doOnFinally
+        getViewState().hideLoading();
     }
 
     private void handleError(Throwable t) {
@@ -114,7 +114,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
         getViewState().swapLanguages();
     }
 
-    public void onTextChanged(String text) {
+    public void onQueryTextChanged(String text) {
         mSubject.onNext(text);
     }
 
