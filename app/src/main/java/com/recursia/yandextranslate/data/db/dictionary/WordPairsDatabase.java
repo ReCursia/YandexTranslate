@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase;
 
 import com.recursia.yandextranslate.data.models.dictionary.WordPairDatabaseModel;
 
-@Database(entities = {WordPairDatabaseModel.class}, version = 2, exportSchema = false)
+@Database(entities = {WordPairDatabaseModel.class}, version = 3, exportSchema = false)
 public abstract class WordPairsDatabase extends RoomDatabase {
 
     public abstract WordPairDao wordPairDao();

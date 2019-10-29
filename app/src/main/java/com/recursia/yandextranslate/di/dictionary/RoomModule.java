@@ -21,7 +21,9 @@ public class RoomModule {
     private final WordPairsDatabase database;
 
     public RoomModule(Application application) {
-        database = Room.databaseBuilder(application, WordPairsDatabase.class, DB_NAME).build();
+        database = Room.databaseBuilder(application, WordPairsDatabase.class, DB_NAME)
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     @Singleton

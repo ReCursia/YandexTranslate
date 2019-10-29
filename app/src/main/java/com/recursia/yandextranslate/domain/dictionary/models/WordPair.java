@@ -6,6 +6,15 @@ import android.arch.persistence.room.Entity;
 public class WordPair {
     private String plainWord;
     private String translatedWord;
+    private boolean isFavorite;
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 
     public String getPlainWord() {
         return plainWord;

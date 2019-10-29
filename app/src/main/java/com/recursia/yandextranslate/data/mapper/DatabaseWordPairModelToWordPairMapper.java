@@ -35,6 +35,7 @@ public class DatabaseWordPairModelToWordPairMapper {
         WordPair wordPair = new WordPair();
         wordPair.setPlainWord(wordPairDatabaseModel.getPlainWord());
         wordPair.setTranslatedWord(wordPairDatabaseModel.getTranslatedWord());
+        wordPair.setFavorite(wordPairDatabaseModel.isFavorite());
         return wordPair;
     }
 

@@ -70,7 +70,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         setContentView(R.layout.activity_main);
         bindViews();
         setOnClickButtonsListeners();
-        setEditTextSubmitListener();
+        setEditTextSubmitListeners();
         initAdapter();
         initRecyclerView();
     }
@@ -101,28 +101,18 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         return translateToSpinner.getSelectedItem().toString();
     }
 
-    private void setEditTextSubmitListener() {
+    private void setEditTextSubmitListeners() {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
                 presenter.onTextChanged(s.toString());
             }
-        });
-        editText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                presenter.onTextSubmitted(editText.getText().toString());
-                return true;
-            }
-            return false;
         });
     }
 

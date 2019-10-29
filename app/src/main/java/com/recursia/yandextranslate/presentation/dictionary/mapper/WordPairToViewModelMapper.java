@@ -35,6 +35,7 @@ public class WordPairToViewModelMapper {
         WordPairViewModel viewModel = new WordPairViewModel();
         viewModel.setPlainWord(pair.getPlainWord());
         viewModel.setTranslatedWord(pair.getTranslatedWord());
+        viewModel.setFavorite(pair.isFavorite());
         return viewModel;
     }
 

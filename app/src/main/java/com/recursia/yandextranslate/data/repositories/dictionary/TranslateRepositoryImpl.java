@@ -26,7 +26,10 @@ public class TranslateRepositoryImpl implements TranslateRepository {
         return mApi.getTranslate(text, GetTranslateCodeUtils.getCode(fromLang, toLang))
                 .subscribeOn(Schedulers.io())
                 .map(mMapper::transform)
-                .doOnNext(wordPair -> wordPair.setPlainWord(text));
+                .doOnNext(pair -> {
+                    pair.setPlainWord(text);
+                    pair.setFavorite(false);
+                });
     }
 
 }

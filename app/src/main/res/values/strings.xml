@@ -4,6 +4,7 @@
     <string name="translate_from">Translate from</string>
     <string name="translate_to">Translate to</string>
     <string name="swapButton">Swap</string>
+    <string name="favorite_word_star">Favorite word star</string>
 
     <string-array name="languages">
         <item>Russian</item>
