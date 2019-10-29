@@ -37,7 +37,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     private final MakeFavoriteWordPairInteractor mMakeFavoriteWordPairInteractor;
     private final WordPairToViewModelMapper mWordPairToViewModelMapper;
     private final ViewModelToWordPairMapper mViewModelToWordPairMapper;
-    private final Subject<String> mTermSubject = BehaviorSubject.create();
+    private final Subject<String> mSubject = BehaviorSubject.create();
 
     @Inject
     public DictionaryPresenter(AddToDictionaryInteractor mAddToDictionaryInteractor,
@@ -75,15 +75,15 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     }
 
     private void initLiveSearch() {
-        Disposable d = mTermSubject
+        Disposable d = mSubject
                 .debounce(TIMEOUT, TIME_UNIT, AndroidSchedulers.mainThread())
                 .distinctUntilChanged()
                 .subscribe(this::updateDisplayedList);
         mCompositeDisposable.add(d);
     }
 
-    private void updateDisplayedList(String term) {
-        Disposable d = mSearchInDictionaryInteractor.searchWords(term)
+    private void updateDisplayedList(String text) {
+        Disposable d = mSearchInDictionaryInteractor.searchWords(text)
                 .doOnSubscribe(disposable -> getViewState().showLoading())
                 .map(mWordPairToViewModelMapper::transform)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -115,7 +115,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     }
 
     public void onTextChanged(String text) {
-        mTermSubject.onNext(text);
+        mSubject.onNext(text);
     }
 
     public void onWordPairClicked(WordPairViewModel viewModel, int position) {
@@ -127,10 +127,11 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
         Disposable d = Completable.fromAction(() -> mMakeFavoriteWordPairInteractor.makeFavorite(wordPair))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(() -> {
+                .doOnComplete(() -> {
                     wordPair.setFavorite(true);
                     getViewState().updateWord(mWordPairToViewModelMapper.transform(wordPair), position);
                 })
+                .doOnError(throwable -> getViewState().showErrorMessage(throwable.getLocalizedMessage()))
                 .subscribe();
         mCompositeDisposable.add(d);
     }

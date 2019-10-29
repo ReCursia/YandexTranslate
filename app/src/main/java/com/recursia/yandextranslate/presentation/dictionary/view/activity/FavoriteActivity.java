@@ -3,6 +3,7 @@ package com.recursia.yandextranslate.presentation.dictionary.view.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -34,6 +35,11 @@ public class FavoriteActivity extends MvpAppCompatActivity implements FavoriteVi
                 .roomModule(new RoomModule(getApplication()))
                 .build()
                 .getFavoritePresenter();
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override

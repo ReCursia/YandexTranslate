@@ -17,10 +17,10 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
 
     private static final boolean ATTACH_TO_ROOT = false;
     private List<WordPairViewModel> mWordPairs;
-    private OnWordPairClicked listener;
+    private OnWordPairClicked clickListener;
 
     public void setOnClickListener(OnWordPairClicked listener) {
-        this.listener = listener;
+        this.clickListener = listener;
     }
 
     @NonNull
@@ -50,8 +50,8 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
 
         wordPairHolder.itemView.setOnClickListener(
                 v -> {
-                    if (listener != null) {
-                        listener.onClick(item, wordPairHolder.getAdapterPosition());
+                    if (clickListener != null) {
+                        clickListener.onClick(item, wordPairHolder.getAdapterPosition());
                     }
                 }
         );

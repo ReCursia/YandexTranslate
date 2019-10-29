@@ -62,7 +62,10 @@ public class FavoritePresenter extends MvpPresenter<FavoriteView> {
         Disposable d = Completable.fromAction(() -> mRemoveFavoriteWordPairInteractor.removeFavorite(wordPair))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(() -> getViewState().deleteWord(position))
+                .doOnComplete(() -> {
+                    getViewState().deleteWord(position);
+                })
+                .doOnError(throwable -> getViewState().showErrorMessage(throwable.getLocalizedMessage()))
                 .subscribe();
         mCompositeDisposable.add(d);
     }

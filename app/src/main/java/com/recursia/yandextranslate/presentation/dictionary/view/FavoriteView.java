@@ -15,4 +15,7 @@ public interface FavoriteView extends MvpView {
 
     @StateStrategyType(SkipStrategy.class)
     void deleteWord(int position);
+
+    @StateStrategyType(SkipStrategy.class)
+    void showErrorMessage(String message);
 }
