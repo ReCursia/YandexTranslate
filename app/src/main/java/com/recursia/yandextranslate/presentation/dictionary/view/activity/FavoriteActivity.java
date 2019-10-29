@@ -41,8 +41,23 @@ public class FavoriteActivity extends MvpAppCompatActivity implements FavoriteVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
         bindViews();
+        initActionBar();
         initAdapter();
         initRecyclerView();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    private void initActionBar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle(getString(R.string.favorite_title));
+        }
     }
 
     private void initRecyclerView() {
