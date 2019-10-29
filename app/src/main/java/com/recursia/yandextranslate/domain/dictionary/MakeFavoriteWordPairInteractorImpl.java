@@ -4,6 +4,8 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
+
 public class MakeFavoriteWordPairInteractorImpl implements MakeFavoriteWordPairInteractor {
     private final WordPairsRepository mRepository;
 
@@ -13,7 +15,7 @@ public class MakeFavoriteWordPairInteractorImpl implements MakeFavoriteWordPairI
     }
 
     @Override
-    public void makeFavorite(WordPair wordPair) {
-        mRepository.makeFavoriteWordPair(wordPair);
+    public Completable makeFavorite(WordPair wordPair) {
+        return mRepository.makeFavoriteWordPair(wordPair);
     }
 }

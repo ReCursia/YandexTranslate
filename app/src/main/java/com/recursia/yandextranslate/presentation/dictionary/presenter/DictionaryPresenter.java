@@ -17,11 +17,9 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
 
@@ -124,8 +122,7 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     }
 
     private void makeFavoriteWordPair(WordPair wordPair, int position) {
-        Disposable d = Completable.fromAction(() -> mMakeFavoriteWordPairInteractor.makeFavorite(wordPair))
-                .subscribeOn(Schedulers.io())
+        Disposable d = mMakeFavoriteWordPairInteractor.makeFavorite(wordPair)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> {
                     wordPair.setFavorite(true);

@@ -12,11 +12,9 @@ import com.recursia.yandextranslate.presentation.dictionary.view.FavoriteView;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
 public class FavoritePresenter extends MvpPresenter<FavoriteView> {
@@ -59,12 +57,9 @@ public class FavoritePresenter extends MvpPresenter<FavoriteView> {
 
     public void onWordPairClicked(WordPairViewModel viewModel, int position) {
         WordPair wordPair = mViewModelToWordPairMapper.transform(viewModel);
-        Disposable d = Completable.fromAction(() -> mRemoveFavoriteWordPairInteractor.removeFavorite(wordPair))
-                .subscribeOn(Schedulers.io())
+        Disposable d = mRemoveFavoriteWordPairInteractor.removeFavorite(wordPair)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(() -> {
-                    getViewState().deleteWord(position);
-                })
+                .doOnComplete(() -> getViewState().deleteWord(position))
                 .doOnError(throwable -> getViewState().showErrorMessage(throwable.getLocalizedMessage()))
                 .subscribe();
         mCompositeDisposable.add(d);

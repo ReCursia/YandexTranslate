@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -57,15 +58,17 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     }
 
     @Override
-    public void makeFavoriteWordPair(WordPair pair) {
+    public Completable makeFavoriteWordPair(WordPair pair) {
         pair.setFavorite(true);
-        mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair));
+        return Completable.fromAction(() -> mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair)))
+                .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public void removeFavoriteWordPair(WordPair pair) {
+    public Completable removeFavoriteWordPair(WordPair pair) {
         pair.setFavorite(false);
-        mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair));
+        return Completable.fromAction(() -> mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair)))
+                .subscribeOn(Schedulers.io());
     }
 
 }

@@ -2,6 +2,8 @@ package com.recursia.yandextranslate.domain.dictionary;
 
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
+import io.reactivex.Completable;
+
 public interface RemoveFavoriteWordPairInteractor {
-    void removeFavorite(WordPair wordPair);
+    Completable removeFavorite(WordPair wordPair);
 }

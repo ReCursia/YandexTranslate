@@ -4,6 +4,7 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public interface WordPairsRepository {
@@ -12,9 +13,9 @@ public interface WordPairsRepository {
 
     Observable<List<WordPair>> getQueryWordPairs(String query);
 
-    void makeFavoriteWordPair(WordPair wordPair);
+    Completable makeFavoriteWordPair(WordPair wordPair);
 
-    void removeFavoriteWordPair(WordPair wordPair);
+    Completable removeFavoriteWordPair(WordPair wordPair);
 
     void addWordPair(WordPair pair);
 
