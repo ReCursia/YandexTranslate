@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.recursia.yandextranslate.R;
 import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.WordPairHolder> {
@@ -35,7 +36,7 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
     }
 
     public void setWordPairs(List<WordPairViewModel> wordPairs) {
-        this.mWordPairs = wordPairs;
+        this.mWordPairs = new ArrayList<>(wordPairs);
         notifyDataSetChanged();
     }
 
