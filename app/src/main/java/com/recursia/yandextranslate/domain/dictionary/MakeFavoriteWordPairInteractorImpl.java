@@ -5,15 +5,15 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import javax.inject.Inject;
 
 public class MakeFavoriteWordPairInteractorImpl implements MakeFavoriteWordPairInteractor {
-    private final WordPairsRepository repository;
+    private final WordPairsRepository mRepository;
 
     @Inject
-    public MakeFavoriteWordPairInteractorImpl(WordPairsRepository repository) {
-        this.repository = repository;
+    public MakeFavoriteWordPairInteractorImpl(WordPairsRepository mRepository) {
+        this.mRepository = mRepository;
     }
 
     @Override
     public void makeFavorite(WordPair wordPair) {
-        repository.makeFavoriteWordPair(wordPair);
+        mRepository.makeFavoriteWordPair(wordPair);
     }
 }
