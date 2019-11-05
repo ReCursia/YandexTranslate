@@ -17,8 +17,8 @@ public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInter
     }
 
     @Override
-    public Single<List<WordPair>> searchWords(String word) {
-        return mRepository.getQueryWordPairs(word);
+    public Single<List<WordPair>> searchWords(String query) {
+        return mRepository.getQueryWordPairs(query);
     }
 
 }
