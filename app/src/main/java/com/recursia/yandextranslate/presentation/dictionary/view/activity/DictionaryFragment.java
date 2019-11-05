@@ -1,22 +1,25 @@
 package com.recursia.yandextranslate.presentation.dictionary.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.recursia.yandextranslate.R;
@@ -29,12 +32,11 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
 import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
-import com.recursia.yandextranslate.presentation.favorite.view.activity.FavoriteActivity;
 
 import java.util.List;
 
 
-public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
+public class DictionaryFragment extends MvpAppCompatFragment implements DictionaryView {
     @InjectPresenter
     DictionaryPresenter presenter;
     private Button addButton;
@@ -45,26 +47,21 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private WordPairsAdapter adapter;
+    private Toolbar toolbar;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.dictionary_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+    public static DictionaryFragment getNewInstance() {
+        return new DictionaryFragment();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.favoriteItem) {
-            presenter.onItemFavoriteClicked();
-        }
-        return super.onOptionsItemSelected(item);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public void openFavoriteScreen() {
-        Intent intent = new Intent(this, FavoriteActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, FavoriteFragment.class);
+        //startActivity(intent);
     }
 
     @Override
@@ -76,7 +73,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     DictionaryPresenter providePresenter() {
         return DaggerDictionaryComponent.builder().interactorModule(new InteractorModule())
                 .mapperModule(new MapperModule())
-                .roomModule(new RoomModule(getApplication()))
+                .roomModule(new RoomModule(getActivity().getApplication()))
                 .retrofitModule(new RetrofitModule()).build().getDictionaryPresenter();
     }
 
@@ -86,29 +83,51 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
         int toIndex = translateToSpinner.getSelectedItemPosition();
         translateFromSpinner.setSelection(toIndex);
         translateToSpinner.setSelection(fromIndex);
+        Toast.makeText(getContext(), "Swapped successfully", Toast.LENGTH_LONG).show();
+    }
 
-        Toast.makeText(this, "Swapped successfully", Toast.LENGTH_LONG).show();
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_dictionary, container, false);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         bindViews();
         setOnClickButtonsListeners();
         setEditTextSubmitListener();
+        initToolbar();
         initAdapter();
         initRecyclerView();
     }
 
+    private void initToolbar() {
+        toolbar.setTitle(R.string.app_name);
+        toolbar.inflateMenu(R.menu.dictionary_menu);
+        toolbar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.favoriteItem) {
+                presenter.onItemFavoriteClicked();
+                return true;
+            }
+            return false;
+        });
+    }
+
+
     private void bindViews() {
-        addButton = findViewById(R.id.addButton);
-        swapButton = findViewById(R.id.swapButton);
-        editText = findViewById(R.id.editText);
-        translateFromSpinner = findViewById(R.id.translateFromSpinner);
-        translateToSpinner = findViewById(R.id.translateToSpinner);
-        recyclerView = findViewById(R.id.wordPairsRecyclerView);
-        progressBar = findViewById(R.id.progressBar);
+        View view = getView();
+        if (view != null) {
+            addButton = view.findViewById(R.id.addButton);
+            swapButton = view.findViewById(R.id.swapButton);
+            editText = view.findViewById(R.id.editText);
+            translateFromSpinner = view.findViewById(R.id.translateFromSpinner);
+            translateToSpinner = view.findViewById(R.id.translateToSpinner);
+            recyclerView = view.findViewById(R.id.wordPairsRecyclerView);
+            progressBar = view.findViewById(R.id.progressBar);
+            toolbar = view.findViewById(R.id.toolbar);
+        }
     }
 
     private void setOnClickButtonsListeners() {
@@ -151,7 +170,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     }
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
 
     @Override
@@ -166,7 +185,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
 
     @Override
     public void showErrorMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override

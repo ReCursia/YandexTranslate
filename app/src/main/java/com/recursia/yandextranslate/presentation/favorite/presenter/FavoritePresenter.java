@@ -53,4 +53,8 @@ public class FavoritePresenter extends MvpPresenter<FavoriteView> {
                 .subscribe();
         mCompositeDisposable.add(d);
     }
+
+    public void onBackPressed() {
+        //TODO implement
+    }
 }

@@ -4,6 +4,6 @@
     android:id="@+id/favoriteWordPairsRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.favorite.view.activity.FavoriteActivity">
+    tools:context=".presentation.favorite.view.activity.FavoriteFragment">
 
 </android.support.v7.widget.RecyclerView>
