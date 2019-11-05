@@ -1,24 +1,24 @@
-package com.recursia.yandextranslate.presentation.favorite.view.activity;
+package com.recursia.yandextranslate.presentation.favorite.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.di.dictionary.DaggerFavoriteComponent;
 import com.recursia.yandextranslate.di.dictionary.InteractorModule;
 import com.recursia.yandextranslate.di.dictionary.MapperModule;
 import com.recursia.yandextranslate.di.dictionary.RoomModule;
+import com.recursia.yandextranslate.di.favorite.DaggerFavoriteComponent;
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
 import com.recursia.yandextranslate.presentation.favorite.presenter.FavoritePresenter;
@@ -39,6 +39,7 @@ public class FavoriteFragment extends MvpAppCompatFragment implements FavoriteVi
 
     @ProvidePresenter
     FavoritePresenter providePresenter() {
+
         return DaggerFavoriteComponent.builder()
                 .interactorModule(new InteractorModule())
                 .mapperModule(new MapperModule())
@@ -70,6 +71,7 @@ public class FavoriteFragment extends MvpAppCompatFragment implements FavoriteVi
     private void initToolbar() {
         toolbar.setTitle(R.string.favorite_title);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24px);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setNavigationOnClickListener(v -> presenter.onBackPressed());
     }
 

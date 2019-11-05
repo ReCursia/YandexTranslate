@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class FavoritePresenter extends MvpPresenter<FavoriteView> {
@@ -19,11 +20,14 @@ public class FavoritePresenter extends MvpPresenter<FavoriteView> {
     private final GetFavoriteWordPairsInteractor mGetFavoriteWordPairsInteractor;
     private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
+    private final Router mRouter;
+
     @Inject
     public FavoritePresenter(RemoveFavoriteWordPairInteractor mRemoveFavoriteWordPairInteractor,
-                             GetFavoriteWordPairsInteractor mGetFavoriteWordPairsInteractor) {
+                             GetFavoriteWordPairsInteractor mGetFavoriteWordPairsInteractor, Router mRouter) {
         this.mRemoveFavoriteWordPairInteractor = mRemoveFavoriteWordPairInteractor;
         this.mGetFavoriteWordPairsInteractor = mGetFavoriteWordPairsInteractor;
+        this.mRouter = mRouter;
     }
 
     @Override
@@ -55,6 +59,6 @@ public class FavoritePresenter extends MvpPresenter<FavoriteView> {
     }
 
     public void onBackPressed() {
-        //TODO implement
+        mRouter.exit();
     }
 }

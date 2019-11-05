@@ -27,7 +27,4 @@ public interface DictionaryView extends MvpView {
     void hideLoading();
 
     void swapLanguages();
-
-    @StateStrategyType(SkipStrategy.class)
-    void openFavoriteScreen();
 }

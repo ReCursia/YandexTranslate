@@ -1,9 +1,10 @@
 package com.recursia.yandextranslate;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
-import com.recursia.yandextranslate.presentation.dictionary.view.activity.DictionaryFragment;
-import com.recursia.yandextranslate.presentation.favorite.view.activity.FavoriteFragment;
+import com.recursia.yandextranslate.presentation.dictionary.view.fragment.DictionaryFragment;
+import com.recursia.yandextranslate.presentation.favorite.view.fragment.FavoriteFragment;
 
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
@@ -18,6 +19,7 @@ public class Screens {
     public static final class FavoriteScreen extends SupportAppScreen {
         @Override
         public Fragment getFragment() {
+            Log.i("TESTGETFRAGMENT","WHY not?");
             return FavoriteFragment.getNewInstance();
         }
     }

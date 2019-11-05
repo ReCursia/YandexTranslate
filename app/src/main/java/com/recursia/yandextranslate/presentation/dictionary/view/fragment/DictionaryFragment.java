@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.presentation.dictionary.view.activity;
+package com.recursia.yandextranslate.presentation.dictionary.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,12 +60,6 @@ public class DictionaryFragment extends MvpAppCompatFragment implements Dictiona
     }
 
     @Override
-    public void openFavoriteScreen() {
-        //Intent intent = new Intent(this, FavoriteFragment.class);
-        //startActivity(intent);
-    }
-
-    @Override
     public void updateWord(WordPair pair, int position) {
         adapter.updateWord(pair, position);
     }
@@ -106,8 +101,10 @@ public class DictionaryFragment extends MvpAppCompatFragment implements Dictiona
     private void initToolbar() {
         toolbar.setTitle(R.string.app_name);
         toolbar.inflateMenu(R.menu.dictionary_menu);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.favoriteItem) {
+                Log.i("TESTINGHELLO","WE ARE HERE");
                 presenter.onItemFavoriteClicked();
                 return true;
             }

@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {InteractorModule.class})
+@Component(modules = {InteractorModule.class,NavigationModule.class})
 public interface DictionaryComponent {
     DictionaryPresenter getDictionaryPresenter();
 }

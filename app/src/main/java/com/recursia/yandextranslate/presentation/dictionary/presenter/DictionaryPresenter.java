@@ -2,6 +2,7 @@ package com.recursia.yandextranslate.presentation.dictionary.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.recursia.yandextranslate.Screens;
 import com.recursia.yandextranslate.domain.dictionary.AddToDictionaryInteractor;
 import com.recursia.yandextranslate.domain.dictionary.GetAllWordsInDictionaryInteractor;
 import com.recursia.yandextranslate.domain.dictionary.MakeFavoriteWordPairInteractor;
@@ -19,6 +20,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
@@ -32,16 +34,19 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     private final MakeFavoriteWordPairInteractor mMakeFavoriteWordPairInteractor;
     private final Subject<String> mSubject = BehaviorSubject.create();
 
+    private final Router mRouter;
+
     @Inject
     public DictionaryPresenter(AddToDictionaryInteractor mAddToDictionaryInteractor,
                                SearchInDictionaryInteractor mSearchInDictionaryInteractor,
                                GetAllWordsInDictionaryInteractor mGetAllWordsInDictionaryInteractor,
-                               MakeFavoriteWordPairInteractor mMakeFavoriteWordPairInteractor
-                               ) {
+                               MakeFavoriteWordPairInteractor mMakeFavoriteWordPairInteractor,
+                               Router router) {
         this.mAddToDictionaryInteractor = mAddToDictionaryInteractor;
         this.mSearchInDictionaryInteractor = mSearchInDictionaryInteractor;
         this.mGetAllWordsInDictionaryInteractor = mGetAllWordsInDictionaryInteractor;
         this.mMakeFavoriteWordPairInteractor = mMakeFavoriteWordPairInteractor;
+        this.mRouter = router;
     }
 
     @Override
@@ -122,6 +127,6 @@ public class DictionaryPresenter extends MvpPresenter<DictionaryView> {
     }
 
     public void onItemFavoriteClicked() {
-        getViewState().openFavoriteScreen();
+        mRouter.navigateTo(new Screens.FavoriteScreen());
     }
 }
