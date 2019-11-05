@@ -34,8 +34,6 @@ import java.util.List;
 
 
 public class DictionaryActivity extends MvpAppCompatActivity implements DictionaryView {
-
-    private static final boolean REVERSE_LAYOUT = false;
     @InjectPresenter
     DictionaryPresenter presenter;
     private Button addButton;
@@ -152,7 +150,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     }
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
     @Override
