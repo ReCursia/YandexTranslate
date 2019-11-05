@@ -5,19 +5,19 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
 public interface DictionaryView extends MvpView {
-    void setWords(List<WordPairViewModel> pairs);
+    void setWords(List<WordPair> pairs);
 
     @StateStrategyType(AddToEndStrategy.class)
-    void addWord(WordPairViewModel pair);
+    void addWord(WordPair pair);
 
     @StateStrategyType(AddToEndStrategy.class)
-    void updateWord(WordPairViewModel pair, int position);
+    void updateWord(WordPair pair, int position);
 
     @StateStrategyType(SkipStrategy.class)
     void showErrorMessage(String message);

@@ -8,7 +8,7 @@ import com.recursia.yandextranslate.utils.GetTranslateCodeUtils;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class TranslateRepositoryImpl implements TranslateRepository {
@@ -22,11 +22,11 @@ public class TranslateRepositoryImpl implements TranslateRepository {
     }
 
     @Override
-    public Observable<WordPair> getTranslate(String text, String fromLang, String toLang) {
+    public Single<WordPair> getTranslate(String text, String fromLang, String toLang) {
         return mApi.getTranslate(text, GetTranslateCodeUtils.getCode(fromLang, toLang))
                 .subscribeOn(Schedulers.io())
                 .map(mMapper::transform)
-                .doOnNext(pair -> {
+                .doOnSuccess(pair -> {
                     pair.setPlainWord(text);
                     pair.setFavorite(false);
                 });

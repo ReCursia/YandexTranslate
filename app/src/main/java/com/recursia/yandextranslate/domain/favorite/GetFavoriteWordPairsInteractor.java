@@ -1,11 +1,11 @@
-package com.recursia.yandextranslate.domain.dictionary;
+package com.recursia.yandextranslate.domain.favorite;
 
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface GetFavoriteWordPairsInteractor {
-    Observable<List<WordPair>> getAllFavoriteWordPairs();
+    Single<List<WordPair>> getAllFavoriteWordPairs();
 }

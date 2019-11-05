@@ -1,7 +1,7 @@
 package com.recursia.yandextranslate.presentation.dictionary.view.adapter;
 
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 public interface OnWordPairClicked {
-    void onClick(WordPairViewModel wordPair, int position);
+    void onClick(WordPair wordPair, int position);
 }

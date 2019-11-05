@@ -11,7 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class WordPairsRepositoryImpl implements WordPairsRepository {
@@ -29,9 +29,8 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     }
 
     @Override
-    public Observable<List<WordPair>> getAllWordPairs() {
+    public Single<List<WordPair>> getAllWordPairs() {
         return mDao.getAllWordPairs()
-                .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(mDatabaseModelToWordPairMapper::transform);
     }
@@ -42,17 +41,15 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
     }
 
     @Override
-    public Observable<List<WordPair>> getAllFavoriteWordPairs() {
+    public Single<List<WordPair>> getAllFavoriteWordPairs() {
         return mDao.getAllFavoriteWordPairs()
-                .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(mDatabaseModelToWordPairMapper::transform);
     }
 
     @Override
-    public Observable<List<WordPair>> getQueryWordPairs(String query) {
+    public Single<List<WordPair>> getQueryWordPairs(String query) {
         return mDao.getAllQueryWordPairs('%' + query + '%')
-                .toObservable()
                 .subscribeOn(Schedulers.io())
                 .map(mDatabaseModelToWordPairMapper::transform);
     }

@@ -4,8 +4,6 @@ package com.recursia.yandextranslate.di.dictionary;
 import com.recursia.yandextranslate.data.mapper.DatabaseWordPairModelToWordPairMapper;
 import com.recursia.yandextranslate.data.mapper.NetworkTranslateModelToWordPairMapper;
 import com.recursia.yandextranslate.data.mapper.WordPairToDatabaseWordPairModelMapper;
-import com.recursia.yandextranslate.presentation.dictionary.mapper.ViewModelToWordPairMapper;
-import com.recursia.yandextranslate.presentation.dictionary.mapper.WordPairToViewModelMapper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,15 +23,5 @@ public class MapperModule {
     @Provides
     WordPairToDatabaseWordPairModelMapper provideWordPairToDatabaseWordPairModelMapper() {
         return new WordPairToDatabaseWordPairModelMapper();
-    }
-
-    @Provides
-    WordPairToViewModelMapper wordPairToViewModelMapper() {
-        return new WordPairToViewModelMapper();
-    }
-
-    @Provides
-    ViewModelToWordPairMapper viewModelToWordPairMapper() {
-        return new ViewModelToWordPairMapper();
     }
 }

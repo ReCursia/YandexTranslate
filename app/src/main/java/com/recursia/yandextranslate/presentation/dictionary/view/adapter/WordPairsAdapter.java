@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.recursia.yandextranslate.R;
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.WordPairHolder> {
 
     private static final boolean ATTACH_TO_ROOT = false;
-    private List<WordPairViewModel> mWordPairs;
+    private List<WordPair> mWordPairs;
     private OnWordPairClicked clickListener;
 
     public void setOnClickListener(OnWordPairClicked listener) {
@@ -35,14 +35,14 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         return new WordPairHolder(itemView);
     }
 
-    public void setWordPairs(List<WordPairViewModel> wordPairs) {
+    public void setWordPairs(List<WordPair> wordPairs) {
         this.mWordPairs = new ArrayList<>(wordPairs);
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull WordPairHolder wordPairHolder, int i) {
-        WordPairViewModel item = mWordPairs.get(i);
+        WordPair item = mWordPairs.get(i);
         wordPairHolder.plainText.setText(item.getPlainWord());
         wordPairHolder.translatedText.setText(item.getTranslatedWord());
 
@@ -63,7 +63,7 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         return (mWordPairs != null) ? mWordPairs.size() : 0;
     }
 
-    public void addWord(WordPairViewModel pair) {
+    public void addWord(WordPair pair) {
         int size = mWordPairs.size();
         mWordPairs.add(pair);
         notifyItemInserted(size);
@@ -74,7 +74,7 @@ public class WordPairsAdapter extends RecyclerView.Adapter<WordPairsAdapter.Word
         notifyItemRemoved(position);
     }
 
-    public void updateWord(WordPairViewModel pair, int position) {
+    public void updateWord(WordPair pair, int position) {
         mWordPairs.set(position, pair);
         notifyItemChanged(position);
     }

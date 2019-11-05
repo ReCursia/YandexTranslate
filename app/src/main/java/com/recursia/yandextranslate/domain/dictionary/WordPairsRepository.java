@@ -5,13 +5,13 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface WordPairsRepository {
 
-    Observable<List<WordPair>> getAllWordPairs();
+    Single<List<WordPair>> getAllWordPairs();
 
-    Observable<List<WordPair>> getQueryWordPairs(String query);
+    Single<List<WordPair>> getQueryWordPairs(String query);
 
     Completable makeFavoriteWordPair(WordPair wordPair);
 
@@ -19,6 +19,6 @@ public interface WordPairsRepository {
 
     void addWordPair(WordPair pair);
 
-    Observable<List<WordPair>> getAllFavoriteWordPairs();
+    Single<List<WordPair>> getAllFavoriteWordPairs();
 
 }

@@ -5,6 +5,7 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor {
     private final WordPairsRepository mWordsRepository;
@@ -17,9 +18,9 @@ public class AddToDictionaryInteractorImpl implements AddToDictionaryInteractor 
     }
 
     @Override
-    public Observable<WordPair> addWord(String word, String fromLang, String toLang) {
+    public Single<WordPair> addWord(String word, String fromLang, String toLang) {
         return mTranslateRepository.getTranslate(word, fromLang, toLang)
-                .doOnNext(mWordsRepository::addWordPair);
+                .doOnSuccess(mWordsRepository::addWordPair);
     }
 
 }

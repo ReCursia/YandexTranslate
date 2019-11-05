@@ -25,10 +25,11 @@ import com.recursia.yandextranslate.di.dictionary.InteractorModule;
 import com.recursia.yandextranslate.di.dictionary.MapperModule;
 import com.recursia.yandextranslate.di.dictionary.RetrofitModule;
 import com.recursia.yandextranslate.di.dictionary.RoomModule;
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import com.recursia.yandextranslate.presentation.dictionary.presenter.DictionaryPresenter;
 import com.recursia.yandextranslate.presentation.dictionary.view.DictionaryView;
 import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
+import com.recursia.yandextranslate.presentation.favorite.view.activity.FavoriteActivity;
 
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     }
 
     @Override
-    public void updateWord(WordPairViewModel pair, int position) {
+    public void updateWord(WordPair pair, int position) {
         adapter.updateWord(pair, position);
     }
 
@@ -154,12 +155,12 @@ public class DictionaryActivity extends MvpAppCompatActivity implements Dictiona
     }
 
     @Override
-    public void setWords(List<WordPairViewModel> pairs) {
+    public void setWords(List<WordPair> pairs) {
         adapter.setWordPairs(pairs);
     }
 
     @Override
-    public void addWord(WordPairViewModel pair) {
+    public void addWord(WordPair pair) {
         adapter.addWord(pair);
     }
 

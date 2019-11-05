@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.presentation.dictionary.view.activity;
+package com.recursia.yandextranslate.presentation.favorite.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,15 +13,14 @@ import com.recursia.yandextranslate.di.dictionary.DaggerFavoriteComponent;
 import com.recursia.yandextranslate.di.dictionary.InteractorModule;
 import com.recursia.yandextranslate.di.dictionary.MapperModule;
 import com.recursia.yandextranslate.di.dictionary.RoomModule;
-import com.recursia.yandextranslate.presentation.dictionary.models.WordPairViewModel;
-import com.recursia.yandextranslate.presentation.dictionary.presenter.FavoritePresenter;
-import com.recursia.yandextranslate.presentation.dictionary.view.FavoriteView;
+import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 import com.recursia.yandextranslate.presentation.dictionary.view.adapter.WordPairsAdapter;
+import com.recursia.yandextranslate.presentation.favorite.presenter.FavoritePresenter;
+import com.recursia.yandextranslate.presentation.favorite.view.FavoriteView;
 
 import java.util.List;
 
 public class FavoriteActivity extends MvpAppCompatActivity implements FavoriteView {
-    private static final boolean REVERSE_LAYOUT = false;
     @InjectPresenter
     FavoritePresenter presenter;
     private RecyclerView recyclerView;
@@ -67,7 +66,7 @@ public class FavoriteActivity extends MvpAppCompatActivity implements FavoriteVi
     }
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, REVERSE_LAYOUT));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
     @Override
@@ -86,7 +85,7 @@ public class FavoriteActivity extends MvpAppCompatActivity implements FavoriteVi
     }
 
     @Override
-    public void setWords(List<WordPairViewModel> pairs) {
+    public void setWords(List<WordPair> pairs) {
         adapter.setWordPairs(pairs);
     }
 }

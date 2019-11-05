@@ -1,4 +1,4 @@
-package com.recursia.yandextranslate.domain.dictionary;
+package com.recursia.yandextranslate.domain.favorite;
 
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 

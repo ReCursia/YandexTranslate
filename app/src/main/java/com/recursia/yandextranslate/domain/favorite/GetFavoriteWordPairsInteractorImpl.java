@@ -1,5 +1,6 @@
-package com.recursia.yandextranslate.domain.dictionary;
+package com.recursia.yandextranslate.domain.favorite;
 
+import com.recursia.yandextranslate.domain.dictionary.WordPairsRepository;
 import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class GetFavoriteWordPairsInteractorImpl implements GetFavoriteWordPairsInteractor {
     private final WordPairsRepository mRepository;
@@ -17,7 +19,7 @@ public class GetFavoriteWordPairsInteractorImpl implements GetFavoriteWordPairsI
     }
 
     @Override
-    public Observable<List<WordPair>> getAllFavoriteWordPairs() {
+    public Single<List<WordPair>> getAllFavoriteWordPairs() {
         return mRepository.getAllFavoriteWordPairs();
     }
 }
