@@ -4,7 +4,6 @@ import com.recursia.yandextranslate.domain.dictionary.models.WordPair;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public interface SearchInDictionaryInteractor {

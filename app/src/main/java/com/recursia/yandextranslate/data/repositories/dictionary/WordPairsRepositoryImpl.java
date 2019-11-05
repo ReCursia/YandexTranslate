@@ -56,15 +56,15 @@ public class WordPairsRepositoryImpl implements WordPairsRepository {
 
     @Override
     public Completable makeFavoriteWordPair(WordPair pair) {
-        pair.setFavorite(true);
         return Completable.fromAction(() -> mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair)))
+                .doOnSubscribe(disposable -> pair.setFavorite(true))
                 .subscribeOn(Schedulers.io());
     }
 
     @Override
     public Completable removeFavoriteWordPair(WordPair pair) {
-        pair.setFavorite(false);
         return Completable.fromAction(() -> mDao.updateWordPair(mWordPairToDatabaseModelMapper.transform(pair)))
+                .doOnSubscribe(disposable -> pair.setFavorite(false))
                 .subscribeOn(Schedulers.io());
     }
 

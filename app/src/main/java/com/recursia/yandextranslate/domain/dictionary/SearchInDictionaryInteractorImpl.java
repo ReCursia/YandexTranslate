@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class SearchInDictionaryInteractorImpl implements SearchInDictionaryInteractor {
