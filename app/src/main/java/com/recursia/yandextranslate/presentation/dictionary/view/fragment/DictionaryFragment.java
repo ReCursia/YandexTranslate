@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,7 +68,9 @@ public class DictionaryFragment extends MvpAppCompatFragment implements Dictiona
         return DaggerDictionaryComponent.builder().interactorModule(new InteractorModule())
                 .mapperModule(new MapperModule())
                 .roomModule(new RoomModule(getActivity().getApplication()))
-                .retrofitModule(new RetrofitModule()).build().getDictionaryPresenter();
+                .retrofitModule(new RetrofitModule())
+                .build()
+                .getDictionaryPresenter();
     }
 
     @Override
@@ -104,7 +105,6 @@ public class DictionaryFragment extends MvpAppCompatFragment implements Dictiona
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.favoriteItem) {
-                Log.i("TESTINGHELLO","WE ARE HERE");
                 presenter.onItemFavoriteClicked();
                 return true;
             }

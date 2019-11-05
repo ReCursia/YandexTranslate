@@ -17,13 +17,13 @@ import ru.terrakok.cicerone.commands.Replace;
 
 public class MainActivity extends AppCompatActivity {
 
-    NavigatorHolder navigatorHolder;
+    private NavigatorHolder navigatorHolder;
 
-    private Navigator navigator = new SupportAppNavigator(this, R.id.main_container) {
+    private final Navigator navigator = new SupportAppNavigator(this, R.id.main_container) {
         @Override
         public void applyCommands(Command[] commands) {
             super.applyCommands(commands);
-            getSupportFragmentManager().executePendingTransactions();
+            getSupportFragmentManager().executePendingTransactions(); //animations
         }
     };
 
@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         navigatorHolder = DaggerMainComponent.builder()
                 .navigationModule(new NavigationModule())
-                .build().getNavigationHolder();
+                .build()
+                .getNavigationHolder();
 
         if (savedInstanceState == null) {
             navigator.applyCommands(new Command[]{new Replace(new Screens.DictionaryScreen())});
